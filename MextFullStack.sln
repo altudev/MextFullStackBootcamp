@@ -7,9 +7,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4FC246AA-05A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FF2E88CB-91E7-442E-A1A6-35BE7CB5AD60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MextFullStack.Domain", "src\MextFullStack.Domain\MextFullStack.Domain.csproj", "{266C8630-9FCC-497A-BA43-AC5D445EA8C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MextFullStack.ConsoleClient", "src\MextFullStack.ConsoleClient\MextFullStack.ConsoleClient.csproj", "{5C39A77C-48C3-4984-836B-21F153F58FF9}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{266C8630-9FCC-497A-BA43-AC5D445EA8C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{266C8630-9FCC-497A-BA43-AC5D445EA8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{266C8630-9FCC-497A-BA43-AC5D445EA8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{266C8630-9FCC-497A-BA43-AC5D445EA8C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C39A77C-48C3-4984-836B-21F153F58FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C39A77C-48C3-4984-836B-21F153F58FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C39A77C-48C3-4984-836B-21F153F58FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C39A77C-48C3-4984-836B-21F153F58FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{266C8630-9FCC-497A-BA43-AC5D445EA8C8} = {4FC246AA-05A3-4C79-BDA8-3BAB81DAC59E}
+		{5C39A77C-48C3-4984-836B-21F153F58FF9} = {4FC246AA-05A3-4C79-BDA8-3BAB81DAC59E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC6AF29C-E359-49E7-8D03-BDF2443F9734}
