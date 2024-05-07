@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Text;
 using MextFullStack.Domain;
 using MextFullStack.Domain.Entities;
 using MextFullStack.Domain.Enums;
@@ -30,4 +31,38 @@ foreach (var logLine in accessControlLogLines)
     };
 
     accessControlLogs.Add(accessControlLog);
+
+    Console.WriteLine($"Reading -> Access Control Log: {logLine}");
 }
+
+var random = new Random();
+
+var stringBuilder = new StringBuilder();
+
+foreach (var accessControlLog in accessControlLogs)
+{
+    // Get a random number
+
+    var randomNumber = random.Next(0, 10000);
+
+    // Check whether this number is even or odd
+
+    accessControlLog.IsApproved = randomNumber % 2 != 0;
+
+    if (randomNumber % 2 == 0)
+        accessControlLog.IsApproved = false;
+    else
+        accessControlLog.IsApproved = true;
+
+    accessControlLog.ApprovedDate = DateTime.Now;
+
+    Console.WriteLine($"Writing -> Access Control Log: {accessControlLog.UserId}---{accessControlLog.DeviceSerialNumber}---{accessControlLog.AccessType}---{accessControlLog.Date}---{accessControlLog.IsApproved}---{accessControlLog.ApprovedDate}");
+
+    stringBuilder.AppendLine($"---{accessControlLog.UserId}---{accessControlLog.DeviceSerialNumber}---{accessControlLog.AccessType}---{accessControlLog.Date}---{accessControlLog.IsApproved}---{accessControlLog.ApprovedDate}");
+}
+
+var savePath = "C:\\Users\\alper\\Desktop\\CheckedAccessControlLogs.txt";
+
+File.AppendAllText(savePath, stringBuilder.ToString());
+
+Console.ReadLine();

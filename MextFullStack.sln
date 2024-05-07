@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4FC246AA-05A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FF2E88CB-91E7-442E-A1A6-35BE7CB5AD60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MextFullStack.Domain", "src\MextFullStack.Domain\MextFullStack.Domain.csproj", "{266C8630-9FCC-497A-BA43-AC5D445EA8C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullStack.Domain", "src\MextFullStack.Domain\MextFullStack.Domain.csproj", "{266C8630-9FCC-497A-BA43-AC5D445EA8C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MextFullStack.ConsoleClient", "src\MextFullStack.ConsoleClient\MextFullStack.ConsoleClient.csproj", "{5C39A77C-48C3-4984-836B-21F153F58FF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullStack.ConsoleClient", "src\MextFullStack.ConsoleClient\MextFullStack.ConsoleClient.csproj", "{5C39A77C-48C3-4984-836B-21F153F58FF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
