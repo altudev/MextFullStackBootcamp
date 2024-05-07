@@ -2,31 +2,32 @@
 
 using MextFullStack.Domain;
 using MextFullStack.Domain.Entities;
-
-Console.WriteLine("Hello, World!");
-
-
-var customer = new Customer();
-
-customer.Id = "12345";
-
-var franchiseRep = new FranchiseRepresentative();
-
-franchiseRep.Id = 1;
-
-var franchise = new Franchise();
-
-franchise.Id = Guid.NewGuid();
-
-List<Customer> customers = new List<Customer>();
-
-List<Franchise> franchises = new List<Franchise>();
-
-List<FranchiseRepresentative> franchiseRepresentatives = new List<FranchiseRepresentative>();
+using MextFullStack.Domain.Enums;
 
 
-Console.WriteLine(customer.CreatedOn.ToString());
+var filePath = "C:\\Users\\alper\\Desktop\\AccessControlLogs.txt";
 
-Console.WriteLine(customer.Id.ToString());
+ var accessControlLogsText = File.ReadAllText(filePath);
 
-Console.ReadLine();
+var accessControlLogLines = accessControlLogsText.Split("\n",StringSplitOptions.RemoveEmptyEntries);
+
+List<AccessControlLog> accessControlLogs = new();
+
+//var accessControlLogs = new List<AccessControlLog>();
+
+foreach (var logLine in accessControlLogLines)
+{
+    var accessControlLogData = logLine.Split("---", StringSplitOptions.RemoveEmptyEntries);
+
+    var accessControlLog = new AccessControlLog
+    {
+        Id = Guid.NewGuid(),
+        UserId = Convert.ToInt32(accessControlLogData[0]),
+        DeviceSerialNumber = accessControlLogData[1],
+        AccessType = Enum.Parse<AccessType>(accessControlLogData[2]),
+        Date = Convert.ToDateTime(accessControlLogData[3]),
+        CreatedOn = DateTime.Now
+    };
+
+    accessControlLogs.Add(accessControlLog);
+}
