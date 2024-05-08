@@ -32,8 +32,45 @@ foreach (var logLine in accessControlLogLines)
 
     accessControlLogs.Add(accessControlLog);
 
-    Console.WriteLine($"Reading -> Access Control Log: {logLine}");
+    //Console.WriteLine($"Reading -> Access Control Log: {logLine}");
 }
+
+// Filtering a List of Items
+
+//accessControlLogs = accessControlLogs
+//    .Where(log => log.AccessType == AccessType.CARD || log.AccessType == AccessType.FP)
+//    .ToList();
+
+
+// Ordering a List of Items
+accessControlLogs = accessControlLogs
+    .OrderBy(log => log.UserId)
+    .ToList();
+
+
+Console.WriteLine("Lutfen bir Device Seri No bilgisi giriniz.");
+
+var deviceSerialNumber = Console.ReadLine();
+
+
+// Filtering a List of Items with 2 of Where Conditions
+accessControlLogs = accessControlLogs
+    .Where(log => log.DeviceSerialNumber == deviceSerialNumber && log.AccessType == AccessType.FACE)
+    .ToList();
+
+
+//Console.WriteLine("Lutfen bir ID bilgisi giriniz.");
+
+//var userId = Convert.ToInt32(Console.ReadLine());
+
+//// Selecting a single item from a List
+//var accessLog = accessControlLogs.LastOrDefault();
+
+//if (accessLog == null)
+//    Console.WriteLine("Girilen ID bilgisine ait kayit bulunamadi.");
+//else
+//    Console.WriteLine($"Single Access Log => UserId:{accessLog.UserId} - DeviceSerialNumber:{accessLog.DeviceSerialNumber}");
+
 
 var random = new Random();
 
