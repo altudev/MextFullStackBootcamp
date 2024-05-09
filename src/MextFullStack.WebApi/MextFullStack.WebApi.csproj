@@ -14,4 +14,8 @@
     <ProjectReference Include="..\MextFullStack.Domain\MextFullStack.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
 </Project>

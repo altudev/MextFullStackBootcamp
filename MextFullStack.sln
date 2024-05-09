@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullStack.Domain", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullStack.ConsoleClient", "src\MextFullStack.ConsoleClient\MextFullStack.ConsoleClient.csproj", "{5C39A77C-48C3-4984-836B-21F153F58FF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MextFullStack.WebApi", "src\MextFullStack.WebApi\MextFullStack.WebApi.csproj", "{2B7DC1BB-E9B1-446A-9392-673032630091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullStack.WebApi", "src\MextFullStack.WebApi\MextFullStack.WebApi.csproj", "{2B7DC1BB-E9B1-446A-9392-673032630091}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
