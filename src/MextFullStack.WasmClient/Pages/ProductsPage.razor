@@ -1,0 +1,39 @@
+﻿@page "/products"
+@using MextFullStack.Domain.Dtos
+@using MextFullStack.WasmClient.Components
+@inject HttpClient HttpClient
+
+<h3>ProductsPage</h3>
+
+@if (Products is null || !Products.Any())
+{
+    <Loading />
+}
+else
+{
+    <div class="row">
+
+   @foreach(var product in Products)
+    {
+        <div class="card col-md-6 col-lg-4">
+            <img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iPhone-13-Pro_Colors_09142021_big.jpg.large.jpg" class="card-img-top" alt="@product.Name">
+            <div class="card-body">
+                    <h5 class="card-title">@product.Name <span class="ms-1 badge bg-danger">Phones</span></h5>
+                <p class="card-text"> $@product.Price</p>
+                <button href="#" class="btn btn-primary">Go somewhere</button>
+            </div>
+        </div>
+    }
+
+    </div>
+}
+
+@code {
+
+    private List<ProductGetAllDto> Products = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+       Products = await HttpClient.GetFromJsonAsync<List<ProductGetAllDto>>("Products");
+    }
+}

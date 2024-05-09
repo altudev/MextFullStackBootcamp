@@ -1,0 +1,38 @@
+﻿@page "/helloworld"
+@using MextFullStack.WasmClient.Helpers
+@inject UrlHelper UrlHelper
+
+<h3>@Title</h3>
+
+<p>@Description</p>
+
+<button class="btn @ButtonCssClass" @onclick="ChangeColour">Change Colour</button>
+
+<br/>
+
+<p class="text-info">@ButtonCssClass</p>
+
+<img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-1262.gif" class="img-fluid text-center" />
+
+@code
+{
+    private string Title = "Hello World";
+
+    private string Description = "This is a simple page that says hello world.";
+
+    private string ButtonCssClass = "btn-primary";
+
+    private void ChangeColour(MouseEventArgs args)
+    {
+        Console.WriteLine("You've clicked the button.");
+
+        ButtonCssClass = ButtonCssClass == "btn-primary" ? "btn-success" : "btn-primary";
+    }
+
+    protected override void OnInitialized()
+    {
+        Title = UrlHelper.ApiBaseUrl;
+
+        base.OnInitialized();
+    }
+}
