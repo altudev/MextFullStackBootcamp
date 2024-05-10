@@ -3,7 +3,15 @@
 @using MextFullStack.WasmClient.Components
 @inject HttpClient HttpClient
 
-<h3>ProductsPage</h3>
+<div class="mb-8 text-center">
+    <h1 class="mb-4 text-4xl font-bold md:text-5xl">Our Amazing Products</h1>
+    <div class="flex justify-center">
+        <div class="w-32 h-1 from-blue-400 to-blue-200 bg-gradient-to-r"></div>
+    </div>
+    <div class="flex justify-center">
+        <div class="w-24 h-1 from-blue-400 to-blue-200 bg-gradient-to-r"></div>
+    </div>
+</div>
 
 @if (Products is null || !Products.Any())
 {
@@ -11,19 +19,43 @@
 }
 else
 {
-    <div class="row">
+    <div class="gap-4 grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3">
 
-   @foreach(var product in Products)
-    {
-        <div class="card col-md-6 col-lg-4">
-            <img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iPhone-13-Pro_Colors_09142021_big.jpg.large.jpg" class="card-img-top" alt="@product.Name">
-            <div class="card-body">
-                    <h5 class="card-title">@product.Name <span class="ms-1 badge bg-danger">Phones</span></h5>
-                <p class="card-text"> $@product.Price</p>
-                <button href="#" class="btn btn-primary">Go somewhere</button>
+        @foreach (var product in Products)
+        {
+            <div class="card w-96 bg-base-100 shadow-xl">
+                <figure><img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iPhone-13-Pro_Colors_09142021_big.jpg.large.jpg" alt="@product.Name" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        @product.Name
+                        <div class="badge badge-secondary">@product.CategoryName</div>
+                    </h2>
+                    <p>@product.Description</p>
+
+                    <div class="flex items-center justify-between">
+
+                        <div class="card-actions justify-start">
+                            <button class="m-1 border-blue-700 from-blue-600 to-blue-500 px-4 py-1 text-white group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border-b-2 border-l-2 border-r-2 bg-gradient-to-tr shadow-lg transition duration-100 ease-in-out active:translate-y-0.5 active:border-blue-600 active:shadow-none">
+                                <span class="h-0 w-0 bg-white absolute rounded-full opacity-10 transition-all duration-300 ease-out group-hover:h-32 group-hover:w-32"></span>
+                                <span class="relative font-medium">Edit</span>
+                            </button>
+
+                            <button class="m-1 border-red-700 from-red-600 to-red-500 px-4 py-1 text-white group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border-b-2 border-l-2 border-r-2 bg-gradient-to-tr shadow-lg transition duration-100 ease-in-out active:translate-y-0.5 active:border-red-600 active:shadow-none">
+                                <span class="h-0 w-0 bg-white absolute rounded-full opacity-10 transition-all duration-300 ease-out group-hover:h-32 group-hover:w-32"></span>
+                                <span class="relative font-medium">Delete</span>
+                            </button>
+                        </div>
+
+                        <div class="card-actions justify-end">
+                            <div class="badge badge-outline">$@product.Price</div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-        </div>
-    }
+
+
+        }
 
     </div>
 }
@@ -34,6 +66,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-       Products = await HttpClient.GetFromJsonAsync<List<ProductGetAllDto>>("Products");
+        Products = await HttpClient.GetFromJsonAsync<List<ProductGetAllDto>>("Products");
     }
 }

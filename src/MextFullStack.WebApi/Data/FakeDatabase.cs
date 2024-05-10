@@ -45,6 +45,7 @@ namespace MextFullStack.WebApi.Data
                     CreatedOn = DateTime.Now,
                     CreatedByUserId = "user1",
                     CategoryId = new Guid("0c572969-ac45-497e-a369-f4073bb99713"),
+                    Category = Categories[0]
                 },
                 new Product
                 {
@@ -55,6 +56,7 @@ namespace MextFullStack.WebApi.Data
                     CreatedOn = DateTime.Now,
                     CreatedByUserId = "user2",
                     CategoryId = new Guid("e03b3678-aa08-40c2-bd9c-935c18940df2"),
+                    Category = Categories[1]
                 },
                 new Product
                 {
@@ -64,7 +66,8 @@ namespace MextFullStack.WebApi.Data
                     Description = "A great iPhone with a beautiful design.",
                     CreatedOn = DateTime.Now,
                     CreatedByUserId = "user1",
-                    CategoryId = new Guid("0c572969-ac45-497e-a369-f4073bb99713")
+                    CategoryId = new Guid("0c572969-ac45-497e-a369-f4073bb99713"),
+                    Category = Categories[0]
                 },
                 new Product
                 {
@@ -74,7 +77,8 @@ namespace MextFullStack.WebApi.Data
                     Description = "The most advanced iPad with a large screen.",
                     CreatedOn = DateTime.Now,
                     CreatedByUserId = "user3",
-                   CategoryId = new Guid("e03b3678-aa08-40c2-bd9c-935c18940df2")
+                   CategoryId = new Guid("e03b3678-aa08-40c2-bd9c-935c18940df2"),
+                   Category = Categories[1]
                 },
                 new Product
                 {
@@ -84,7 +88,8 @@ namespace MextFullStack.WebApi.Data
                     Description = "A compact and affordable iPhone.",
                     CreatedOn = DateTime.Now,
                     CreatedByUserId = "user2",
-                    CategoryId = new Guid("0c572969-ac45-497e-a369-f4073bb99713")
+                    CategoryId = new Guid("0c572969-ac45-497e-a369-f4073bb99713"),
+                    Category = Categories[0]
                 }
             };
         }
