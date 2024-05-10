@@ -1,0 +1,50 @@
+﻿@using MextFullStack.Domain.Dtos
+<div class="card w-96 bg-base-100 shadow-xl">
+    <figure><img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iPhone-13-Pro_Colors_09142021_big.jpg.large.jpg" alt="@Product.Name" /></figure>
+    <div class="card-body">
+        <h2 class="card-title">
+            @Product.Name
+            <div class="badge badge-secondary">@Product.CategoryName</div>
+        </h2>
+        <p>@Product.Description</p>
+
+        <div class="flex items-center justify-between">
+
+            <div class="card-actions justify-start">
+                <button @onclick="@(() => NavigateToEditPageEventCallback.InvokeAsync(Product.Id))" class="border-b-2 border-l-2 border-r-2 group relative m-1 inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border-blue-700 bg-gradient-to-tr from-blue-600 to-blue-500 px-4 py-1 text-white shadow-lg transition duration-100 ease-in-out active:translate-y-0.5 active:border-blue-600 active:shadow-none">
+                    <span class="opacity-10 absolute h-0 w-0 rounded-full bg-white transition-all duration-300 ease-out group-hover:h-32 group-hover:w-32"></span>
+                    <span class="relative font-medium">Edit</span>
+                </button>
+
+                <button @onclick="@(() =>DeleteEventCallback.InvokeAsync(Product.Id))" class="border-b-2 border-l-2 border-r-2 group relative m-1 inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border-red-700 bg-gradient-to-tr from-red-600 to-red-500 px-4 py-1 text-white shadow-lg transition duration-100 ease-in-out active:translate-y-0.5 active:border-red-600 active:shadow-none">
+                    <span class="opacity-10 absolute h-0 w-0 rounded-full bg-white transition-all duration-300 ease-out group-hover:h-32 group-hover:w-32"></span>
+                    <span class="relative font-medium">Delete</span>
+                </button>
+            </div>
+
+            <div class="card-actions justify-end">
+                <div class="badge badge-outline">$@Product.Price</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public ProductGetAllDto Product { get; set; }
+
+    [Parameter] public EventCallback DeleteEventCallback { get; set; }
+
+    [Parameter] public EventCallback NavigateToEditPageEventCallback { get; set; }
+
+    // private async Task HandleDelete()
+    // {
+    //     Console.WriteLine("Click event fired from ProductCard!");
+
+
+    //     await DeleteEventCallback.InvokeAsync(Product.Id);
+
+    // }
+}

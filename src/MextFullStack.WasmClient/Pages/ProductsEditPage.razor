@@ -1,0 +1,45 @@
+﻿@page "/products/edit/{id:guid}"
+@using MextFullStack.Domain.Dtos
+@inject HttpClient HttpClient
+
+<div class="mb-8 text-center">
+    <h1 class="mb-4 text-4xl font-bold md:text-5xl">Editing Product</h1>
+    <div class="flex justify-center">
+        <div class="h-1 w-32 bg-gradient-to-r from-blue-400 to-blue-200"></div>
+    </div>
+    <div class="flex justify-center">
+        <div class="h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-200"></div>
+    </div>
+</div>
+
+@if (ProductEditDto is null)
+{
+    <Loading />
+}
+else
+{
+    <h1>@ProductEditDto.Name</h1>
+}
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+
+    public ProductEditDto ProductEditDto { get; set; } = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+       var product = await HttpClient.GetFromJsonAsync<ProductGetByIdDto>($"Products/{Id}");
+
+       ProductEditDto = new ProductEditDto
+       {
+           Id = product.Id,
+           Name = product.Name,
+           Description = product.Description,
+           Price = product.Price,
+           CategoryId = product.CategoryId
+       };
+
+
+    }
+}

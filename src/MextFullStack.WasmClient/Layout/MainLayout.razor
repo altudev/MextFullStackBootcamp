@@ -1,5 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using Blazored.Toast.Configuration
+@inherits LayoutComponentBase
 <div>
+    <BlazoredToasts Position="ToastPosition.TopRight" />
     <article>
         @Body
     </article>

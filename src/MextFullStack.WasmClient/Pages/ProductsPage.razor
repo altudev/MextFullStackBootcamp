@@ -1,71 +1,148 @@
 ﻿@page "/products"
+@using System.Net
 @using MextFullStack.Domain.Dtos
-@using MextFullStack.WasmClient.Components
+@using MextFullStack.WasmClient.Enums
 @inject HttpClient HttpClient
+@inject IToastService ToastService
+@inject NavigationManager NavigationManager
 
 <div class="mb-8 text-center">
     <h1 class="mb-4 text-4xl font-bold md:text-5xl">Our Amazing Products</h1>
     <div class="flex justify-center">
-        <div class="w-32 h-1 from-blue-400 to-blue-200 bg-gradient-to-r"></div>
+        <div class="h-1 w-32 bg-gradient-to-r from-blue-400 to-blue-200"></div>
     </div>
     <div class="flex justify-center">
-        <div class="w-24 h-1 from-blue-400 to-blue-200 bg-gradient-to-r"></div>
+        <div class="h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-200"></div>
     </div>
 </div>
 
-@if (Products is null || !Products.Any())
-{
-    <Loading />
-}
-else
-{
-    <div class="gap-4 grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3">
-
-        @foreach (var product in Products)
-        {
-            <div class="card w-96 bg-base-100 shadow-xl">
-                <figure><img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iPhone-13-Pro_Colors_09142021_big.jpg.large.jpg" alt="@product.Name" /></figure>
-                <div class="card-body">
-                    <h2 class="card-title">
-                        @product.Name
-                        <div class="badge badge-secondary">@product.CategoryName</div>
-                    </h2>
-                    <p>@product.Description</p>
-
-                    <div class="flex items-center justify-between">
-
-                        <div class="card-actions justify-start">
-                            <button class="m-1 border-blue-700 from-blue-600 to-blue-500 px-4 py-1 text-white group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border-b-2 border-l-2 border-r-2 bg-gradient-to-tr shadow-lg transition duration-100 ease-in-out active:translate-y-0.5 active:border-blue-600 active:shadow-none">
-                                <span class="h-0 w-0 bg-white absolute rounded-full opacity-10 transition-all duration-300 ease-out group-hover:h-32 group-hover:w-32"></span>
-                                <span class="relative font-medium">Edit</span>
-                            </button>
-
-                            <button class="m-1 border-red-700 from-red-600 to-red-500 px-4 py-1 text-white group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-lg border-b-2 border-l-2 border-r-2 bg-gradient-to-tr shadow-lg transition duration-100 ease-in-out active:translate-y-0.5 active:border-red-600 active:shadow-none">
-                                <span class="h-0 w-0 bg-white absolute rounded-full opacity-10 transition-all duration-300 ease-out group-hover:h-32 group-hover:w-32"></span>
-                                <span class="relative font-medium">Delete</span>
-                            </button>
-                        </div>
-
-                        <div class="card-actions justify-end">
-                            <div class="badge badge-outline">$@product.Price</div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-        }
-
+<div class="card mb-4 bg-base-100 shadow-xl">
+    <div class="card-body">
+        <h2 class="card-title">Sort Products</h2>
+        <div class="flex flex-col gap-4 md:flex-row">
+            <select class="select select-primary w-full max-w-xs" @onchange="SortOnChange">
+                <option selected value="@SortingType.Default">Default</option>
+                <option value="@SortingType.Name">Name</option>
+                <option value="@SortingType.Price">Price</option>
+            </select>
+            <select class="select select-primary w-full max-w-xs" @onchange="SortingOrderOnChange">
+                <option value="true" selected>Ascending</option>
+                <option value="false">Descending</option>
+            </select>
+        </div>
     </div>
-}
+
+    <div class="card-body">
+        @if (Products is null)
+        {
+            <Loading />
+        }
+        else if (!Products.Any())
+        {
+            <div role="alert" class="alert alert-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 h-6 w-6 stroke-current" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                <span>There aren't any products to be shown.</span>
+            </div>
+        }
+        else
+        {
+            <div class="grid-cols-1 grid justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3">
+
+                @foreach (var product in Products)
+                {
+                    <ProductCard Product="product" NavigateToEditPageEventCallback="@(()=>NavigateToEditPage(product.Id))" DeleteEventCallback="@(()=>Delete(product.Id))" />
+                }
+
+            </div>
+        }
+    </div>
+</div>
+
+
 
 @code {
 
     private List<ProductGetAllDto> Products = null;
 
+    private bool IsAscending = true;
+
+    private SortingType SortingType = SortingType.Default;
+
     protected override async Task OnInitializedAsync()
     {
         Products = await HttpClient.GetFromJsonAsync<List<ProductGetAllDto>>("Products");
+
+        SortProducts();
+    }
+
+
+    private async Task Delete(Guid id)
+    {
+        // API Call
+        var response = await HttpClient.DeleteAsync($"Products/{id}");
+
+        if (!response.IsSuccessStatusCode)
+        {
+            if (response.StatusCode == HttpStatusCode.InternalServerError)
+                ToastService.ShowError("Sweet Jesus!");
+            else
+                ToastService.ShowWarning("Beklenmedik bir hata olustu.");
+
+            return;
+        }
+
+        // Remove from state
+        var index = Products.FindIndex(x => x.Id == id);
+
+        if (index == -1)
+            return;
+
+        Products.RemoveAt(index);
+
+        ToastService.ShowSuccess("The selected Product was successfully deleted.");
+    }
+
+    private void NavigateToEditPage(Guid id)
+    {
+        NavigationManager.NavigateTo($"/products/edit/{id}");
+    }
+
+
+    private void SortingOrderOnChange(ChangeEventArgs args)
+    {
+        if (args.Value is null)
+            return;
+
+        IsAscending = bool.Parse(args.Value.ToString());
+
+        SortProducts();
+    }
+
+    private void SortOnChange(ChangeEventArgs args)
+    {
+        if (args.Value is null)
+            return;
+
+        SortingType = Enum.Parse<SortingType>(args.Value.ToString());
+
+        SortProducts();
+    }
+
+    private void SortProducts()
+    {
+        switch (SortingType)
+        {
+            case SortingType.Default:
+                Products = IsAscending ? Products.OrderBy(x => x.Id).ToList() : Products.OrderByDescending(x => x.Id).ToList();
+                break;
+            case SortingType.Name:
+                Products = IsAscending ? Products.OrderBy(x => x.Name).ToList() : Products.OrderByDescending(x => x.Name).ToList();
+                break;
+            case SortingType.Price:
+                Products = IsAscending ? Products.OrderBy(x => x.Price).ToList() : Products.OrderByDescending(x => x.Price).ToList();
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -62,14 +62,22 @@ namespace MextFullStack.WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(Product product)
+        public IActionResult Update(ProductEditDto productEditDto)
         {
-            if (product.Id == Guid.Empty)
+            if (productEditDto.Id == Guid.Empty)
                 return BadRequest("Gecersiz urun id'si.");
 
-            if (FakeDatabase.Products.Any(p => p.Name.ToLowerInvariant() == product.Name.ToLowerInvariant()
-                && p.Id != product.Id))
+            if (FakeDatabase.Products.Any(p => p.Name.ToLowerInvariant() == productEditDto.Name.ToLowerInvariant()
+                && p.Id != productEditDto.Id))
                 return BadRequest("Bu isimde bir urun zaten mevcut.");
+
+            var product = FakeDatabase.Products.FirstOrDefault(x => x.Id == productEditDto.Id);
+
+            product.Name = productEditDto.Name;
+            product.Price = productEditDto.Price;
+            product.Description = productEditDto.Description;
+            product.CategoryId = productEditDto.CategoryId;
+            product.ModifiedOn = DateTime.Now;
 
             var productIndex = FakeDatabase.Products.FindIndex(p => p.Id == product.Id);
 
