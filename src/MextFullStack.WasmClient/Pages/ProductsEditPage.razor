@@ -1,8 +1,11 @@
 ﻿@page "/products/edit/{id:guid}"
+@using System.Net
 @using MextFullStack.Domain.Dtos
 @inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+@inject IToastService ToastService
 
-<div class="mb-8 text-center">
+<div class="mb-8 mt-5 text-center">
     <h1 class="mb-4 text-4xl font-bold md:text-5xl">Editing Product</h1>
     <div class="flex justify-center">
         <div class="h-1 w-32 bg-gradient-to-r from-blue-400 to-blue-200"></div>
@@ -12,34 +15,110 @@
     </div>
 </div>
 
-@if (ProductEditDto is null)
+@if (productEditDto is null || categories is null)
 {
     <Loading />
 }
 else
 {
-    <h1>@ProductEditDto.Name</h1>
-}
+    <div class="flex min-h-screen flex-col items-center">
+        <div class="card mt-12 w-96 rounded-2xl bg-white shadow-xl">
+            <div class="card-body p-8">
+                <h2 class="card-title text-[#1f4037] mb-6 text-center text-3xl font-bold">Editing @productEditDto.Name</h2>
+                <EditForm Model="@productEditDto" FormName="product-edit" OnValidSubmit="HandleValidSubmit">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary class="text-red-500" />
+                    <div class="mb-6">
+                        <label for="name" class="mb-1 block text-sm font-medium text-gray-700">Name</label>
+                        <InputText @bind-Value="@productEditDto.Name" type="text" id="name" class="input input-bordered mt-1 w-full max-w-xs rounded-full focus:border-[#99f2c8] focus:ring-2 focus:ring-[#99f2c8]" />
+                        <ValidationMessage For="@(() => productEditDto.Name)" class="text-red-500" />
+                    </div>
+                    <div class="mb-6">
+                        <label for="description" class="mb-1 block text-sm font-medium text-gray-700">Description</label>
+                        <InputTextArea @bind-Value="@productEditDto.Description" type="text" id="description" class="textarea textarea-bordered mt-1 w-full max-w-xs rounded-2xl focus:border-[#99f2c8] focus:ring-2 focus:ring-[#99f2c8]" />
+                        <ValidationMessage For="@(() => productEditDto.Description)" class="text-red-500" />
+                    </div>
+                    <div class="mb-6">
+                        <label for="price" class="mb-1 block text-sm font-medium text-gray-700">Price</label>
+                        <InputNumber @bind-Value="@productEditDto.Price" id="price" class="input input-bordered mt-1 w-full max-w-xs rounded-full focus:border-[#99f2c8] focus:ring-2 focus:ring-[#99f2c8]" />
+                        <ValidationMessage For="@(() => productEditDto.Price)" class="text-red-500" />
+                    </div>
+                    <div class="mb-6">
+                        <label for="category" class="mb-1 block text-sm font-medium text-gray-700">Category</label>
+                        <InputSelect @bind-Value="@productEditDto.CategoryId" id="category" class="select select-bordered mt-1 w-full max-w-xs rounded-full focus:border-[#99f2c8] focus:ring-2 focus:ring-[#99f2c8]">
+                            @foreach (var category in categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(() => productEditDto.CategoryId)" class="text-red-500" />
+                    </div>
+                    
+                    <div class="card-actions justify-between">
+                        <button @onclick="@(() => NavigationManager.NavigateTo("/products"))" class="border-b-2 border-l-2 border-r-2 group relative m-1 inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full border-red-700 bg-gradient-to-tr from-red-600 to-red-500 px-6 py-3 text-white shadow-lg transition duration-100 ease-in-out active:translate-y-0.5 active:border-red-600 active:shadow-none">
+                            <span class="opacity-10 absolute h-0 w-0 rounded-full bg-white transition-all duration-300 ease-out group-hover:h-32 group-hover:w-32"></span>
+                            <span class="relative font-medium">Cancel</span>
+                        </button>
+                        <button type="submit" class="border-b-2 border-l-2 border-r-2 from-[#40A578] to-[#9DDE8B] group relative m-1 inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full border-green-700 bg-gradient-to-tr px-6 py-3 text-white shadow-lg transition duration-100 ease-in-out active:translate-y-0.5 active:border-[#ACE1AF] active:shadow-none">
+                            <span class="opacity-10 absolute h-0 w-0 rounded-full bg-white transition-all duration-300 ease-out group-hover:h-32 group-hover:w-32"></span>
+                            <span class="relative font-medium">Submit</span>
+                        </button>
+                    </div>
+                </EditForm>
+                
+            </div>
+        </div>
+    </div>
 
+
+}
 @code {
     [Parameter]
     public Guid Id { get; set; }
 
-    public ProductEditDto ProductEditDto { get; set; } = null;
+    private ProductEditDto productEditDto { get; set; } = null;
+    private List<CategoryGetAllForSelectDto> categories { get; set; } = new List<CategoryGetAllForSelectDto>();
 
     protected override async Task OnInitializedAsync()
     {
-       var product = await HttpClient.GetFromJsonAsync<ProductGetByIdDto>($"Products/{Id}");
+        var productTask = HttpClient.GetFromJsonAsync<ProductGetByIdDto>($"Products/{Id}");
 
-       ProductEditDto = new ProductEditDto
-       {
-           Id = product.Id,
-           Name = product.Name,
-           Description = product.Description,
-           Price = product.Price,
-           CategoryId = product.CategoryId
-       };
+        var categoriesTask = HttpClient.GetFromJsonAsync<List<CategoryGetAllForSelectDto>>("Categories/GetAllForSelect");
 
+        await Task.WhenAll(productTask, categoriesTask);
 
+        var productGetById = await productTask;
+
+        productEditDto = new ProductEditDto
+            {
+                Id = productGetById.Id,
+                Name = productGetById.Name,
+                Description = productGetById.Description,
+                Price = productGetById.Price,
+                CategoryId = productGetById.CategoryId
+            };
+
+        categories = await categoriesTask;
     }
+
+    private async Task HandleValidSubmit()
+    {
+       var response = await HttpClient.PutAsJsonAsync($"Products/{productEditDto.Id}", productEditDto);
+
+       if (!response.IsSuccessStatusCode)
+       {
+           if (response.StatusCode == HttpStatusCode.InternalServerError)
+               ToastService.ShowError("Sweet Jesus!");
+           else
+               ToastService.ShowWarning("Beklenmedik bir hata olustu.");
+
+           return;
+       }
+
+       ToastService.ShowSuccess("The selected Product was successfully updated.");
+
+        NavigationManager.NavigateTo("/products");
+    }
+
+
 }

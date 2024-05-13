@@ -1,4 +1,5 @@
-﻿using MextFullStack.Domain.Entities;
+﻿using MextFullStack.Domain.Dtos;
+using MextFullStack.Domain.Entities;
 using MextFullStack.WebApi.Data;
 using MextFullStack.WebApi.RequestModels;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,18 @@ namespace MextFullStack.WebApi.Controllers
         public IActionResult GetAll()
         {
             return Ok(FakeDatabase.Categories);
+        }
+
+        [HttpGet("[action]")]
+        public IActionResult GetAllForSelect()
+        {
+            var categories = FakeDatabase
+                .Categories
+                .Where(x => x.IsActive)
+                .Select(c => CategoryGetAllForSelectDto.FromCategory(c))
+                .ToList();
+
+            return Ok(categories);
         }
 
         [HttpGet("{id:guid}")]

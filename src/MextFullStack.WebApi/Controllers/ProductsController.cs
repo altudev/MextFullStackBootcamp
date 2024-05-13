@@ -61,10 +61,10 @@ namespace MextFullStack.WebApi.Controllers
             return Ok(product.Id);
         }
 
-        [HttpPut]
-        public IActionResult Update(ProductEditDto productEditDto)
+        [HttpPut("{id:guid}")]
+        public IActionResult Update(Guid id,ProductEditDto productEditDto)
         {
-            if (productEditDto.Id == Guid.Empty)
+            if (productEditDto.Id == Guid.Empty || id != productEditDto.Id)
                 return BadRequest("Gecersiz urun id'si.");
 
             if (FakeDatabase.Products.Any(p => p.Name.ToLowerInvariant() == productEditDto.Name.ToLowerInvariant()
@@ -78,6 +78,10 @@ namespace MextFullStack.WebApi.Controllers
             product.Description = productEditDto.Description;
             product.CategoryId = productEditDto.CategoryId;
             product.ModifiedOn = DateTime.Now;
+
+            var category = FakeDatabase.Categories.FirstOrDefault(c => c.Id == product.CategoryId);
+
+            product.Category = category;
 
             var productIndex = FakeDatabase.Products.FindIndex(p => p.Id == product.Id);
 
