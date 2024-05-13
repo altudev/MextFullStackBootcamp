@@ -73,6 +73,8 @@
         Products = await HttpClient.GetFromJsonAsync<List<ProductGetAllDto>>("Products");
 
         SortProducts();
+
+        await base.OnInitializedAsync();
     }
 
 

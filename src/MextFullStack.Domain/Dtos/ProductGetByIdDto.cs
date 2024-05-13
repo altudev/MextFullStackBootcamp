@@ -13,7 +13,7 @@ namespace MextFullStack.Domain.Dtos
         public bool CategoryIsActive { get; set; }
 
 
-        public static ProductGetByIdDto FromProduct(Product product, Category category)
+        public static ProductGetByIdDto FromProduct(Product product)
         {
             return new ProductGetByIdDto
             {
@@ -22,8 +22,8 @@ namespace MextFullStack.Domain.Dtos
                 Price = product.Price,
                 Description = product.Description,
                 CategoryId = product.CategoryId,
-                CategoryName = category.Name,
-                CategoryIsActive = category.IsActive
+                CategoryName = product.Category.Name,
+                CategoryIsActive = product.Category.IsActive
             };
         }
     }

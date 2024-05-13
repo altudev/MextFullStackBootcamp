@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using MextFullStack.ConsoleClient;
 using MextFullStack.Domain.Entities;
 
 var apiUrl = "http://localhost:5106/api/";
@@ -18,3 +19,9 @@ foreach (var product in products)
 }
 
 Console.ReadKey();
+
+ConsoleLogger consoleLogger = new ConsoleLogger("TungaConsoleLogger","#FFFFFF",LogType.Warning);
+
+FileLogger fileLogger = new FileLogger("TungaFileLogger");
+
+fileLogger.Log("asdasdasd",LogType.Information);

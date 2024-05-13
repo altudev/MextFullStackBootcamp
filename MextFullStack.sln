@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullStack.WebApi", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullStack.WasmClient", "src\MextFullStack.WasmClient\MextFullStack.WasmClient.csproj", "{6D3E479B-2F00-4C68-BDF1-3F9D23D4DAC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MextFullStack.Persistence", "MextFullStack.Persistence\MextFullStack.Persistence.csproj", "{6D79078B-A4D0-4E3F-9404-A09C45754895}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{6D3E479B-2F00-4C68-BDF1-3F9D23D4DAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D3E479B-2F00-4C68-BDF1-3F9D23D4DAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D3E479B-2F00-4C68-BDF1-3F9D23D4DAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D79078B-A4D0-4E3F-9404-A09C45754895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D79078B-A4D0-4E3F-9404-A09C45754895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D79078B-A4D0-4E3F-9404-A09C45754895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D79078B-A4D0-4E3F-9404-A09C45754895}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{5C39A77C-48C3-4984-836B-21F153F58FF9} = {4FC246AA-05A3-4C79-BDA8-3BAB81DAC59E}
 		{2B7DC1BB-E9B1-446A-9392-673032630091} = {4FC246AA-05A3-4C79-BDA8-3BAB81DAC59E}
 		{6D3E479B-2F00-4C68-BDF1-3F9D23D4DAC8} = {4FC246AA-05A3-4C79-BDA8-3BAB81DAC59E}
+		{6D79078B-A4D0-4E3F-9404-A09C45754895} = {4FC246AA-05A3-4C79-BDA8-3BAB81DAC59E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC6AF29C-E359-49E7-8D03-BDF2443F9734}

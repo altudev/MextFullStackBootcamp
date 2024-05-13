@@ -1,3 +1,7 @@
+using MextFullStack.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +20,14 @@ builder.Services.AddCors(options =>
             .SetIsOriginAllowed((host) => true)
             .AllowAnyHeader());
 });
+
+//var applicationName = builder.Configuration["ApplicationName123"];
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+//var connectionString = builder.Configuration.GetConnectionString("SQLiteConnection");
+
+builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase(connectionString)); 
 
 var app = builder.Build();
 

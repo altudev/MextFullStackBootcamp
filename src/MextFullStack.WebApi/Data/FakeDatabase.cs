@@ -16,21 +16,27 @@ namespace MextFullStack.WebApi.Data
                     Id = new Guid("0c572969-ac45-497e-a369-f4073bb99713"),
                     Name = "Mobile Phone",
                     Description = "Mobile Phone devices",
-                    IsActive = true
+                    IsActive = true,
+                    CreatedByUserId = "user1",
+                    CreatedOn = Convert.ToDateTime("2024-05-13T11:34:55+00:00")
                 },
                 new Category
                 {
                     Id = new Guid("e03b3678-aa08-40c2-bd9c-935c18940df2"),
                     Name = "Computer",
                     Description = "Computer items",
-                    IsActive = true
+                    IsActive = true,
+                    CreatedByUserId = "user1",
+                    CreatedOn = Convert.ToDateTime("2024-05-13T11:34:55+00:00")
                 },
                 new Category
                 {
                     Id = new Guid("a562521c-7547-410c-a073-60447674b9b9"),
                     Name = "Home",
                     Description = "Home products",
-                    IsActive = true
+                    IsActive = true,
+                    CreatedByUserId = "user1",
+                    CreatedOn = Convert.ToDateTime("2024-05-13T11:34:55+00:00")
                 }
             };
 

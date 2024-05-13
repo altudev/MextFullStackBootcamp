@@ -1,5 +1,6 @@
 ﻿using MextFullStack.Domain.Dtos;
 using MextFullStack.Domain.Entities;
+using MextFullStack.Persistence.Contexts;
 using MextFullStack.WebApi.Data;
 using MextFullStack.WebApi.RequestModels;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,12 @@ namespace MextFullStack.WebApi.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
+        private readonly ApplicationDbContext _dbContext;
+
+        public CategoriesController(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         [HttpGet("[action]")]
         public IActionResult GetAll()
         {

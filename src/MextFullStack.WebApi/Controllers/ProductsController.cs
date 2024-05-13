@@ -1,8 +1,10 @@
 ﻿using MextFullStack.Domain.Dtos;
 using MextFullStack.Domain.Entities;
+using MextFullStack.Persistence.Contexts;
 using MextFullStack.WebApi.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MextFullStack.WebApi.Controllers
 {
@@ -10,41 +12,47 @@ namespace MextFullStack.WebApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        public ProductsController()
-        {
+        private readonly ApplicationDbContext _dbContext;
 
+        public ProductsController(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
-            var productDtos = FakeDatabase
+            var productDtos = await _dbContext
                 .Products
-                .Select(p=>ProductGetAllDto.FromProduct(p))
-                .ToList();
+                .AsNoTracking()
+                .Include(p => p.Category)
+                .Select(p => ProductGetAllDto.FromProduct(p))
+                .ToListAsync(cancellationToken);
 
             return Ok(productDtos);
         }
 
         [HttpGet("{id:guid}")]
-        public IActionResult GetById(Guid id)
+        public async Task<IActionResult> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            var product = FakeDatabase
+            var product = await _dbContext
                 .Products
-                .FirstOrDefault(p => p.Id == id);
+                .AsNoTracking()
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
 
             if (product == null)
                 return NotFound("Aradaginiz urun sistemde bulunamadi.");
 
-            var category = FakeDatabase.Categories.FirstOrDefault(c => c.Id == product.CategoryId);
 
-            var productDto = ProductGetByIdDto.FromProduct(product, category);
+
+            var productDto = ProductGetByIdDto.FromProduct(product);
 
             return Ok(productDto);
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public async Task<IActionResult> CreateAsync(Product product, CancellationToken cancellationToken)
         {
             if (product.Name.Length <= 2)
                 return BadRequest("Urun ismi en az 2 karakter olmalidir.");
@@ -53,25 +61,29 @@ namespace MextFullStack.WebApi.Controllers
                 return BadRequest("Urun fiyati sifirdan buyuk olmalidir.");
 
 
-            if (FakeDatabase.Products.Any(p => p.Name.ToLowerInvariant() == product.Name.ToLowerInvariant()))
+            if (await _dbContext.Products.AnyAsync(p => p.Name.ToLowerInvariant() == product.Name.ToLowerInvariant(), cancellationToken))
                 return BadRequest("Bu isimde bir urun zaten mevcut.");
 
-            FakeDatabase.Products.Add(product);
+            _dbContext.Products.Add(product);
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             return Ok(product.Id);
         }
 
         [HttpPut("{id:guid}")]
-        public IActionResult Update(Guid id,ProductEditDto productEditDto)
+        public async Task<IActionResult> UpdateAsync(Guid id, ProductEditDto productEditDto, CancellationToken cancellationToken)
         {
             if (productEditDto.Id == Guid.Empty || id != productEditDto.Id)
                 return BadRequest("Gecersiz urun id'si.");
 
-            if (FakeDatabase.Products.Any(p => p.Name.ToLowerInvariant() == productEditDto.Name.ToLowerInvariant()
-                && p.Id != productEditDto.Id))
+            if (await _dbContext.Products.AnyAsync(p => p.Name.ToLowerInvariant() == productEditDto.Name.ToLowerInvariant()
+                && p.Id != productEditDto.Id, cancellationToken))
                 return BadRequest("Bu isimde bir urun zaten mevcut.");
 
-            var product = FakeDatabase.Products.FirstOrDefault(x => x.Id == productEditDto.Id);
+            var product = await _dbContext
+                .Products
+                .FirstOrDefaultAsync(x => x.Id == productEditDto.Id, cancellationToken);
 
             product.Name = productEditDto.Name;
             product.Price = productEditDto.Price;
@@ -79,40 +91,42 @@ namespace MextFullStack.WebApi.Controllers
             product.CategoryId = productEditDto.CategoryId;
             product.ModifiedOn = DateTime.Now;
 
-            var category = FakeDatabase.Categories.FirstOrDefault(c => c.Id == product.CategoryId);
-
-            product.Category = category;
-
-            var productIndex = FakeDatabase.Products.FindIndex(p => p.Id == product.Id);
-
-            if (productIndex == -1)
-                return NotFound("Guncellemek istediginiz urun sistemde bulunamadi.");
-
-            product.ModifiedOn =DateTime.Now;
-
-            FakeDatabase.Products[productIndex] = product;
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             return Ok(product.Id);
         }
 
         [HttpDelete("{id:guid}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
             // Empty Guid Example -> 00000000-0000-0000-0000-000000000000
 
-            if(id == Guid.Empty)
+            if (id == Guid.Empty)
                 return BadRequest("Gecersiz urun id'si.");
 
-            var product = FakeDatabase
+            var product = await _dbContext
                 .Products
-                .FirstOrDefault(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
 
             if (product == null)
                 return NotFound("Silmek istediginiz urun sistemde bulunamadi.");
 
-            FakeDatabase.Products.Remove(product);
+            _dbContext.Products.Remove(product);
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             return NoContent();
+        }
+
+
+        [HttpPost("SeedInitialData")]
+        public async Task<IActionResult> SeedInitialDataAsync(CancellationToken cancellationToken)
+        {
+            _dbContext.Products.AddRange(FakeDatabase.Products);
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return Ok();
         }
 
 
