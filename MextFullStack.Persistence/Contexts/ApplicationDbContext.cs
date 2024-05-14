@@ -1,6 +1,5 @@
 ﻿using MextFullStack.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace MextFullStack.Persistence.Contexts
 {

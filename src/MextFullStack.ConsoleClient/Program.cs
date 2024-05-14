@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using MextFullStack.ConsoleClient;
+using MextFullStack.Domain.Common;
 using MextFullStack.Domain.Entities;
 
 var apiUrl = "http://localhost:5106/api/";

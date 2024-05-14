@@ -20,6 +20,7 @@ namespace MextFullStack.WebApi.Controllers
         [HttpGet("[action]")]
         public IActionResult GetAll()
         {
+
             return Ok(FakeDatabase.Categories);
         }
 

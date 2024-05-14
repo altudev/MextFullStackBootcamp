@@ -9,5 +9,7 @@ namespace MextFullStack.Domain.Entities
         public string? Description { get; set; }
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public override string CreatedByUserId { get; set; } = "system";
     }
 }

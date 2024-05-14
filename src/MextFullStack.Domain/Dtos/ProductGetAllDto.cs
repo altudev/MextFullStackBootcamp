@@ -1,8 +1,9 @@
-﻿using MextFullStack.Domain.Entities;
+﻿using MextFullStack.Domain.Common;
+using MextFullStack.Domain.Entities;
 
 namespace MextFullStack.Domain.Dtos
 {
-    public class ProductGetAllDto
+    public sealed class ProductGetAllDto:EntityBase<Guid>
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

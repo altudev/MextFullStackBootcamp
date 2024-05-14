@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MextFullStack.Domain.Common;
+﻿using MextFullStack.Domain.Common;
 
 namespace MextFullStack.Domain.Entities
 {
@@ -17,7 +12,7 @@ namespace MextFullStack.Domain.Entities
 
         public string Phone { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public override DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
         public Customer()
         {

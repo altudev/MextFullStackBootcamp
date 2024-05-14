@@ -9,9 +9,21 @@
 
         public override void Log(string message, LogType logType)
         {
-            File.WriteAllText("C:\\Logs\\logs.txt",message);
+            File.WriteAllText("C:\\Logs\\logs.txt",$"Log Tipi:{GetLogType(logType)}");
 
             base.Log(message, logType);
+        }
+
+        private string GetLogType(LogType logType)
+        {
+            return logType switch
+            {
+                LogType.Information => "Bilgi Seviyesi",
+                LogType.Warning => "Uyari Seviyesi",
+                LogType.Error => "Hata Seviyesi",
+                LogType.Debug => "Hata Ayiklama Seviyesi",
+                _ => "Bilgi Seviyesi"
+            };
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace MextFullStack.Domain.Dtos
 {
-    public class ProductGetByIdDto
+    public sealed class ProductGetByIdDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

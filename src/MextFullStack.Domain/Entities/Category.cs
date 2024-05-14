@@ -1,4 +1,5 @@
-﻿using MextFullStack.Domain.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using MextFullStack.Domain.Common;
 
 namespace MextFullStack.Domain.Entities
 {
@@ -7,5 +8,7 @@ namespace MextFullStack.Domain.Entities
         public string Name { get; set; }
         public string? Description { get; set; }
         public bool IsActive { get; set; }
+
+        public override DateTime CreatedOn { get; set; } = DateTime.Now;
     }
 }

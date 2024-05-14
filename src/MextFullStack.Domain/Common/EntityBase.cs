@@ -1,14 +1,16 @@
 ﻿namespace MextFullStack.Domain.Common
 {
-    public class EntityBase<TKey>
+    public abstract class EntityBase<TKey>
     {
         //public Guid Id { get; set; }
         public TKey Id { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public string CreatedByUserId { get; set; }
+        public virtual DateTime CreatedOn { get; set; }
+        public virtual string CreatedByUserId { get; set; } = "system";
 
         public DateTime? ModifiedOn { get; set; }
         public string? ModifiedByUserId { get; set; }
 
     }
+
+
 }

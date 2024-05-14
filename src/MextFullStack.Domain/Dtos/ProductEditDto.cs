@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MextFullStack.Domain.Dtos
+namespace  MextFullStack.Domain.Dtos
 {
-    public class ProductEditDto
+    public sealed class ProductEditDto
     {
         [Required]
         public Guid Id { get; set; }
