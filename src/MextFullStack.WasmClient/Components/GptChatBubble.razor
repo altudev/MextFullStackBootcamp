@@ -1,0 +1,33 @@
+﻿@using MextFullStack.Domain.Dtos
+@using MextFullStack.Domain.Enums
+
+@if (ChatMessage.MessageType == GptChatMessageType.AI || ChatMessage.MessageType == GptChatMessageType.System)
+{
+    <!-- AI message -->
+    <div class="chat chat-start">
+        <div class="chat-image avatar">
+            <div class="w-10 rounded-full">
+                <img src="ai-avatar.png" alt="AI Avatar">
+            </div>
+        </div>
+        <div class="chat-bubble chat-bubble-secondary">@ChatMessage.Message</div>
+        <div class="chat-footer opacity-50">@ChatMessage.CreatedOn.ToShortTimeString()</div>
+    </div>
+}
+@if (ChatMessage.MessageType == GptChatMessageType.User)
+{
+    <!-- User message -->
+    <div class="chat chat-end">
+        <div class="chat-image avatar">
+            <div class="w-10 rounded-full">
+                <img src="user-avatar.png" alt="User Avatar">
+            </div>
+        </div>
+        <div class="chat-bubble chat-bubble-primary">@ChatMessage.Message</div>
+        <div class="chat-footer opacity-50">@ChatMessage.CreatedOn.ToShortTimeString()</div>
+    </div>
+}
+
+@code {
+    [Parameter] public GptChatMessage ChatMessage { get; set; }
+}
