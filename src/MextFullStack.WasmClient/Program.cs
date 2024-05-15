@@ -15,7 +15,7 @@ builder.Services.AddSingleton<UrlHelper>(new UrlHelper("https://localhost:7010/a
 
 builder.Services.AddBlazoredToast();
 
-const string apiKey = "";
+const string apiKey = "sk-pro";
 
 builder.Services.AddOpenAIService(settings => settings.ApiKey = apiKey);
 

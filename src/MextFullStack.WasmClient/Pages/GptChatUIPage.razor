@@ -1,30 +1,39 @@
 ﻿@page "/gptchatui"
+@using MextFullStack.Domain.Dtos
+@using MextFullStack.Domain.Enums
+@using OpenAI.Interfaces
+@using OpenAI.ObjectModels
+@using OpenAI.ObjectModels.RequestModels
+@inject IOpenAIService OpenAIService
 
 <div class="flex h-screen items-center justify-center bg-gray-100">
     <div class="card h-5/6 w-11/12 shadow-lg md:w-1/2 lg:w-1/3">
         <div class="card-body flex h-full flex-col">
             <div class="flex-grow space-y-4 overflow-y-auto">
+
+                <!-- Chat Messages -->
+              @foreach (var message in GptMessages)
+                {
+                    <GptChatBubble ChatMessage="message" />
+                }
                 
-
-               
-
-                <!-- AI message -->
-                <div class="chat chat-start">
-                    <div class="chat-image avatar">
-                        <div class="w-10 rounded-full">
-                            <img src="ai-avatar.png" alt="AI Avatar">
-                        </div>
-                    </div>
-                    <div class="chat-bubble chat-bubble-secondary">Sure, I'd be happy to help! Can you provide more details about your C# project?</div>
-                    <div class="chat-footer opacity-50">9:35 AM</div>
-                </div>
-
+                @if (isLoading)
+                {
+                    <p>Loading...</p>
+                }
                 <!-- More messages -->
             </div>
 
             <div class="mt-4 flex">
-                <input type="text" placeholder="Type your message..." class="input input-bordered flex-grow rounded-r-none">
-                <button class="btn btn-primary rounded-l-none">Send</button>
+                <input type="text" @bind="@Prompt" placeholder="Type your message..." class="input input-bordered flex-grow rounded-r-none">
+                @if (isLoading)
+                {
+                    <button class="btn btn-primary rounded-l-none" @onclick="SendMessage" disabled="disabled">Loading</button>
+                }
+                else
+                {
+                    <button class="btn btn-primary rounded-l-none" @onclick="SendMessage">Send</button>
+                }
             </div>
         </div>
     </div>
@@ -32,6 +41,80 @@
 
 @code {
 
+    public List<GptChatMessage> GptMessages { get; set; }
 
+    public string Prompt { get; set; }
+
+    private bool isLoading = false;
+
+    protected override void OnInitialized()
+    {
+        GptMessages = new()
+        {
+            new GptChatMessage("I'm a helpful coding assistant. How may I help you madame?",GptChatMessageType.System),
+        };
+
+        base.OnInitialized();
+    }
+
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrWhiteSpace(Prompt))
+            return;
+
+        isLoading = true;
+
+        GptMessages.Add(new GptChatMessage(Prompt,GptChatMessageType.User));
+
+        // OPENAI Messages
+
+        var chatMessages = MapGptMessagesToChatMessages(GptMessages);
+
+        var completionResult = await OpenAIService.ChatCompletion.CreateCompletion(new ChatCompletionCreateRequest
+        {
+            Messages = chatMessages,
+            Model = Models.Gpt_3_5_Turbo,
+            MaxTokens = 4000
+        });
+        if (completionResult.Successful)
+        {
+            //Console.WriteLine(completionResult.Choices.First().Message.Content);
+
+            var receivedMessage = completionResult.Choices.First().Message.Content;
+
+            GptMessages.Add(new GptChatMessage(receivedMessage,GptChatMessageType.AI));
+        }
+
+        isLoading = false;
+
+        Prompt = string.Empty;
+
+    }
+
+    private List<ChatMessage> MapGptMessagesToChatMessages(List<GptChatMessage> gptMessages)
+    {
+        if (gptMessages is null || !gptMessages.Any())
+            return new List<ChatMessage>();
+
+        List<ChatMessage> chatMessages = new();
+
+        foreach (var gptMessage in gptMessages)
+        {
+            ChatMessage chatMessage = null;
+
+            if (gptMessage.MessageType == GptChatMessageType.System)
+                chatMessage = ChatMessage.FromSystem(gptMessage.Message);
+
+            else if (gptMessage.MessageType == GptChatMessageType.AI)
+                chatMessage = ChatMessage.FromAssistant(gptMessage.Message);
+
+            else
+                chatMessage = ChatMessage.FromUser(gptMessage.Message);
+
+            chatMessages.Add(chatMessage);
+        }
+
+        return chatMessages;
+    }
 
 }
