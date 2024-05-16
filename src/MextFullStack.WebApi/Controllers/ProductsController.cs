@@ -2,6 +2,7 @@
 using MextFullStack.Domain.Entities;
 using MextFullStack.Persistence.Contexts;
 using MextFullStack.WebApi.Data;
+using MextFullStack.WebApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,21 +14,27 @@ namespace MextFullStack.WebApi.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly RequestCounterManager _requestCounterManager;
 
-        public ProductsController(ApplicationDbContext dbContext)
+        public ProductsController(ApplicationDbContext dbContext, RequestCounterManager requestCounterManager)
         {
             _dbContext = dbContext;
+            _requestCounterManager = requestCounterManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
+            _requestCounterManager.Increment();
+
             var productDtos = await _dbContext
                 .Products
                 .AsNoTracking()
                 .Include(p => p.Category)
                 .Select(p => ProductGetAllDto.FromProduct(p))
                 .ToListAsync(cancellationToken);
+             //Shooting stars
+            //var rootManager = new RootPathManager()
 
             return Ok(productDtos);
         }
@@ -35,6 +42,8 @@ namespace MextFullStack.WebApi.Controllers
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
+            _requestCounterManager.Increment();
+
             var product = await _dbContext
                 .Products
                 .AsNoTracking()
@@ -54,6 +63,8 @@ namespace MextFullStack.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync(Product product, CancellationToken cancellationToken)
         {
+            _requestCounterManager.Increment();
+
             if (product.Name.Length <= 2)
                 return BadRequest("Urun ismi en az 2 karakter olmalidir.");
 
@@ -74,6 +85,8 @@ namespace MextFullStack.WebApi.Controllers
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> UpdateAsync(Guid id, ProductEditDto productEditDto, CancellationToken cancellationToken)
         {
+            _requestCounterManager.Increment();
+
             if (productEditDto.Id == Guid.Empty || id != productEditDto.Id)
                 return BadRequest("Gecersiz urun id'si.");
 
@@ -99,6 +112,8 @@ namespace MextFullStack.WebApi.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
+            _requestCounterManager.Increment();
+
             // Empty Guid Example -> 00000000-0000-0000-0000-000000000000
 
             if (id == Guid.Empty)
@@ -122,6 +137,8 @@ namespace MextFullStack.WebApi.Controllers
         [HttpPost("SeedInitialData")]
         public async Task<IActionResult> SeedInitialDataAsync(CancellationToken cancellationToken)
         {
+            _requestCounterManager.Increment();
+
             _dbContext.Products.AddRange(FakeDatabase.Products);
 
             await _dbContext.SaveChangesAsync(cancellationToken);

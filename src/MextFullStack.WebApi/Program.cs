@@ -1,4 +1,5 @@
 using MextFullStack.Persistence.Contexts;
+using MextFullStack.WebApi.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +22,14 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader());
 });
 
+// Singleton
+builder.Services.AddSingleton<RequestCounterManager>();
+builder.Services.AddSingleton<RootPathManager>(container => new RootPathManager(builder.Environment.WebRootPath,
+    container.GetRequiredService<RequestCounterManager>()
+    ));
+// Scoped
+// Transient
+
 //var applicationName = builder.Configuration["ApplicationName123"];
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -41,6 +50,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseAuthorization();
 
