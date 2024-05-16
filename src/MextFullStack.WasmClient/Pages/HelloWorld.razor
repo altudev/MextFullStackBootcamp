@@ -1,6 +1,7 @@
 ﻿@page "/helloworld"
 @using MextFullStack.WasmClient.Helpers
 @inject UrlHelper UrlHelper
+@inject IToasterService ToastService
 
 <h3>@Title</h3>
 
@@ -34,6 +35,8 @@
     protected override void OnInitialized()
     {
         Title = UrlHelper.ApiBaseUrl;
+
+        ToastService.ShowSuccess("Counter Page Loaded");
 
         base.OnInitialized();
     }

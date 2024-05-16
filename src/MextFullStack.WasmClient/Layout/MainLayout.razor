@@ -1,7 +1,9 @@
 ﻿@using Blazored.Toast.Configuration
+@using Sotsera.Blazor.Toaster
 @inherits LayoutComponentBase
 <div>
     <BlazoredToasts Position="ToastPosition.TopRight" />
+    <ToastContainer />
     <article>
         @Body
     </article>

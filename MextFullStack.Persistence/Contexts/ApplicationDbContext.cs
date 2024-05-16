@@ -20,11 +20,11 @@ namespace MextFullStack.Persistence.Contexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseInMemoryDatabase("MextFullStackDB");
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("MextFullStackDB");
 
-        //    base.OnConfiguring(optionsBuilder);
-        //}
+            base.OnConfiguring(optionsBuilder);
+        }
     }
 }

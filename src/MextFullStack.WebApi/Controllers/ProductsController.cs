@@ -1,10 +1,8 @@
-﻿using MextFullStack.Domain.Common;
-using MextFullStack.Domain.Dtos;
+﻿using MextFullStack.Domain.Dtos;
 using MextFullStack.Domain.Entities;
 using MextFullStack.Persistence.Contexts;
 using MextFullStack.WebApi.Data;
 using MextFullStack.WebApi.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,32 +20,6 @@ namespace MextFullStack.WebApi.Controllers
         {
             _dbContext = dbContext;
             _requestCounterManager = requestCounterManager;
-
-            ShootingStars.Add("12345");
-            ShootingStars.Add(12345);
-            ShootingStars.Add(123.45);
-            ShootingStars.Add(true);
-            ShootingStars.Add(new { Name = "Mext", Surname = "Software" });
-            ShootingStars.Add(new ProductEditDto());
-            ShootingStars.Add(new Product());
-            ShootingStars.Add(new Category());
-
-            foreach (var shootingStar in ShootingStars)
-            {
-                if (shootingStar is EntityBase<Guid>||shootingStar is EntityBase<string> || shootingStar is EntityBase<int>)
-                {
-                    var myBaseObject = shootingStar as EntityBase<Guid>;
-
-                    myBaseObject.CreatedByUserId = "system";
-                }
-
-                if (shootingStar is IShootingStar)
-                {
-                    var myBaseObject = shootingStar as IShootingStar;
-
-                    myBaseObject.CreatedOnStar = DateTimeOffset.Now;
-                }
-            }
         }
 
         [HttpGet]

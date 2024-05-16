@@ -1,4 +1,6 @@
 ﻿@page "/counter"
+@using MextFullStack.WasmClient.Services
+@inject IToasterService ToastService
 
 <PageTitle>Counter</PageTitle>
 
@@ -17,4 +19,12 @@
     {
         currentCount++;
     }
+
+    protected override void OnInitialized()
+    {
+        ToastService.ShowSuccess("Counter Page Loaded");
+
+        base.OnInitialized();
+    }
+
 }

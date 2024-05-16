@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\MextFullStack.Persistence\MextFullStack.Persistence.csproj" />
+    <ProjectReference Include="..\MextFullStack.Application\MextFullStack.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
