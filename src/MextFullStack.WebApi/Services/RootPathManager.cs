@@ -1,6 +1,8 @@
-﻿namespace MextFullStack.WebApi.Services
+﻿using MextFullStack.Persistence.Services;
+
+namespace MextFullStack.WebApi.Services
 {
-    public class RootPathManager
+    public class RootPathManager: IRootPathService
     {
         private readonly string RootPath;
         private readonly RequestCounterManager _requestCounterManager;
@@ -10,7 +12,6 @@
             RootPath = rootPath;
             _requestCounterManager = requestCounterManager;
         }
-
         public string GetRootPath()
         {
             return RootPath;

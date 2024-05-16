@@ -1,4 +1,5 @@
 using MextFullStack.Persistence.Contexts;
+using MextFullStack.Persistence.Services;
 using MextFullStack.WebApi.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,7 @@ builder.Services.AddCors(options =>
 
 // Singleton
 builder.Services.AddSingleton<RequestCounterManager>();
-builder.Services.AddSingleton<RootPathManager>(container => new RootPathManager(builder.Environment.WebRootPath,
+builder.Services.AddSingleton<IRootPathService,RootPathManager>(container => new RootPathManager(builder.Environment.WebRootPath,
     container.GetRequiredService<RequestCounterManager>()
     ));
 // Scoped

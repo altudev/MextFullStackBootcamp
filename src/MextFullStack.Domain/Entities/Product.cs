@@ -2,7 +2,7 @@
 
 namespace MextFullStack.Domain.Entities
 {
-    public class Product:EntityBase<Guid>
+    public class Product:EntityBase<Guid>,IShootingStar
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -11,5 +11,6 @@ namespace MextFullStack.Domain.Entities
         public Category Category { get; set; }
 
         public override string CreatedByUserId { get; set; } = "system";
+        public DateTimeOffset CreatedOnStar { get; set; }
     }
 }

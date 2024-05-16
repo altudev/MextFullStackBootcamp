@@ -1,13 +1,20 @@
 ﻿using MextFullStack.Domain.Entities;
+using MextFullStack.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace MextFullStack.Persistence.Contexts
 {
     public class ApplicationDbContext:DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
+        private readonly IRootPathService _rootPathService;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IRootPathService rootPathService):base(options)
         {
-            
+            _rootPathService = rootPathService;
+
+            var rootPath = _rootPathService.GetRootPath();
+
+            _rootPathService.WriteTotalCount();
         }
 
         public DbSet<Category> Categories { get; set; }
