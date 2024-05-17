@@ -1,0 +1,14 @@
+﻿@using Blazored.Toast.Configuration
+@using Sotsera.Blazor.Toaster
+@inherits LayoutComponentBase
+
+<div class="flex">
+    <NavMenu />
+    <div class="flex-1 ml-64 p-4">
+        <BlazoredToasts Position="ToastPosition.TopRight" />
+        <ToastContainer />
+        <article>
+            @Body
+        </article>
+    </div>
+</div>

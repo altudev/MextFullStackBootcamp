@@ -1,0 +1,51 @@
+﻿<div class="fixed flex h-screen w-64 flex-col text-white" style="background: linear-gradient(to bottom, #E684AE, #79CBCA, #77A1D3);">
+    <div class="flex items-center justify-between p-4">
+        <a class="text-lg font-bold" href="">MextFullStack.WasmClient</a>
+        <button title="Navigation menu" class="btn btn-ghost lg:hidden" @onclick="ToggleNavMenu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="@NavMenuCssClass lg:block" @onclick="ToggleNavMenu">
+        <nav class="flex flex-col space-y-2 p-3">
+            <div class="nav-item">
+                <NavLink class="nav-link rounded-lg p-2 text-base text-white transition duration-200 hover:bg-white hover:text-pink-500" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu mr-2" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+            <div class="nav-item">
+                <NavLink class="nav-link rounded-lg p-2 text-base text-white transition duration-200 hover:bg-white hover:text-pink-500" href="counter">
+                    <span class="bi bi-plus-square-fill-nav-menu mr-2" aria-hidden="true"></span> Counter
+                </NavLink>
+            </div>
+            <div class="nav-item">
+                <NavLink class="nav-link rounded-lg p-2 text-base text-white transition duration-200 hover:bg-white hover:text-pink-500" href="weather">
+                    <span class="bi bi-list-nested-nav-menu mr-2" aria-hidden="true"></span> Weather
+                </NavLink>
+            </div>
+            <div class="nav-item">
+                <NavLink class="nav-link rounded-lg p-2 text-base text-white transition duration-200 hover:bg-white hover:text-pink-500" href="helloworld">
+                    <span class="bi bi-list-nested-nav-menu mr-2" aria-hidden="true"></span> HelloWorld
+                </NavLink>
+            </div>
+            <div class="nav-item">
+                <NavLink class="nav-link rounded-lg p-2 text-base text-white transition duration-200 hover:bg-white hover:text-pink-500" href="products">
+                    <span class="bi bi-plus-square-fill-nav-menu mr-2" aria-hidden="true"></span> Products
+                </NavLink>
+            </div>
+        </nav>
+    </div>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "hidden" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
