@@ -1,4 +1,5 @@
 ﻿using MextFullstackSaaS.Domain.Common;
+using MextFullstackSaaS.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace MextFullstackSaaS.Domain.Identity
@@ -17,5 +18,7 @@ namespace MextFullstackSaaS.Domain.Identity
 
         public DateTimeOffset? ModifiedOn { get; set; }
         public string? ModifiedByUserId { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }
