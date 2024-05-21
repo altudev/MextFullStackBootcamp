@@ -1,5 +1,5 @@
-﻿using MextFullstackSaaS.Domain.Enums;
-using MextFullstackSaaS.Domain.Identity;
+﻿using MextFullstackSaaS.Domain.Entities;
+using MextFullstackSaaS.Domain.Enums;
 
 namespace MextFullstackSaaS.Application.Features.Orders.Queries.GetById
 {
@@ -16,5 +16,23 @@ namespace MextFullstackSaaS.Application.Features.Orders.Queries.GetById
         public int Quantity { get; set; }
         public List<string> Urls { get; set; } = new List<string>();
         public DateTimeOffset CreatedOn { get; set; }
+
+        public static OrderGetByIdDto MapFromOrder(Order order)
+        {
+            return new OrderGetByIdDto
+            {
+                Id = order.Id,
+                UserId = order.UserId,
+                IconDescription = order.IconDescription,
+                ColourCode = order.ColourCode,
+                Model = order.Model,
+                DesignType = order.DesignType,
+                Size = order.Size,
+                Shape = order.Shape,
+                Quantity = order.Quantity,
+                Urls = order.Urls,
+                CreatedOn = order.CreatedOn
+            };
+        }
     }
 }

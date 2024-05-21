@@ -2,6 +2,7 @@
 using MextFullstackSaaS.Application.Features.Orders.Commands.Add;
 using MextFullstackSaaS.Application.Features.Orders.Commands.Delete;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetAll;
+using MextFullstackSaaS.Application.Features.Orders.Queries.GetById;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,11 @@ namespace MextFullstackSaaS.WebApi.Controllers
             _mediatr = mediatr;
         }
 
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return Ok(await _mediatr.Send(new OrderGetByIdQuery(id), cancellationToken));
+        }
 
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)

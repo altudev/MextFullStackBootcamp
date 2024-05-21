@@ -20,10 +20,7 @@ namespace MextFullstackSaaS.Application.Features.Orders.Queries.GetById
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-            return new OrderGetByIdDto
-            {
-
-            };
+            return OrderGetByIdDto.MapFromOrder(order);
         }
     }
 }
