@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace MextFullstackSaaS.Domain.Identity
 {
-    // AppUser / ApplicationUser
+    // AppUser / ApplicationUser // UserManager<User> _userManager.SignInAsync()
     public class User:IdentityUser<Guid>, IEntity<Guid>,ICreatedByEntity,IModifiedByEntity
     {
         public string? FirstName { get; set; }

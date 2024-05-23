@@ -3,7 +3,6 @@ using MextFullstackSaaS.Application.Features.Orders.Commands.Add;
 using MextFullstackSaaS.Application.Features.Orders.Commands.Delete;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetAll;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetById;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MextFullstackSaaS.WebApi.Controllers
@@ -33,7 +32,7 @@ namespace MextFullstackSaaS.WebApi.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AddAsyncAsync(OrderAddCommand command,CancellationToken cancellationToken)
+        public async Task<IActionResult> AddAsync(OrderAddCommand command,CancellationToken cancellationToken)
         {
             return Ok(await _mediatr.Send(command, cancellationToken));
         }

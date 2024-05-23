@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using MextFullstackSaaS.Application.Common.Models;
-using MextFullstackSaaS.Domain.Common;
 using MextFullstackSaaS.Domain.Entities;
 using MextFullstackSaaS.Domain.Enums;
 
@@ -28,7 +27,7 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
                 Size = orderAddCommand.Size,
                 Shape = orderAddCommand.Shape,
                 Quantity = orderAddCommand.Quantity,
-                CreatedOn = DateTimeOffset.Now,
+                CreatedOn = DateTimeOffset.UtcNow,
             };
         }
     }
