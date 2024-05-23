@@ -19,6 +19,7 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
         {
            var order = OrderAddCommand.MapToOrder(request);
 
+           order.UserId = _currentUserService.UserId;
            order.CreatedByUserId = _currentUserService.UserId.ToString();
 
             /* TODO: Make Request to the Gemine or Dall-e 3 */

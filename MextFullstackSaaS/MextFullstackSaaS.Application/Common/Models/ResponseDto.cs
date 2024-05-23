@@ -34,6 +34,11 @@
             Data = default;
         }
 
+        public ResponseDto()
+        {
+            Errors = new ();
+        }
+
         public bool Succeeded { get; set; }
         public string Message { get; set; }
         public List<ErrorDto> Errors { get; set; }
