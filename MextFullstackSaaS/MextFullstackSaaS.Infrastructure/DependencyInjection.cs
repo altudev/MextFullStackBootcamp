@@ -1,8 +1,10 @@
 ﻿using MextFullstackSaaS.Application.Common.Interfaces;
+using MextFullstackSaaS.Domain.Settings;
 using MextFullstackSaaS.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 
 namespace MextFullstackSaaS.Infrastructure
 {
@@ -15,6 +17,8 @@ namespace MextFullstackSaaS.Infrastructure
 
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+
+            services.Configure<JwtSettings>(jwtSettings => configuration.GetSection("JwtSettings").Bind(jwtSettings));
 
             return services;
         }

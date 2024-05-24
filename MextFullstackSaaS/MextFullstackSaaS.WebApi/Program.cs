@@ -1,8 +1,10 @@
 using MextFullstackSaaS.Application;
+using MextFullstackSaaS.Domain.Settings;
 using MextFullstackSaaS.Infrastructure;
 using MextFullstackSaaS.WebApi;
 using MextFullstackSaaS.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +25,6 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddWebServices(builder.Configuration);
-
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
