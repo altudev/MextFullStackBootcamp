@@ -1,5 +1,6 @@
 ﻿using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Application.Common.Models;
+using MextFullstackSaaS.Application.Common.Models.Auth;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using MextFullstackSaaS.Domain.Entities;
 using MextFullstackSaaS.Domain.Identity;
@@ -18,29 +19,9 @@ namespace MextFullstackSaaS.Infrastructure.Services
             _jwtService = jwtService;
         }
 
-        public async Task<JwtDto> RegisterAsync(UserAuthRegisterCommand command, CancellationToken cancellationToken)
+        public async Task<UserAuthRegisterResponseDto> RegisterAsync(UserAuthRegisterCommand command, CancellationToken cancellationToken)
         {
-            var id = Guid.NewGuid();
-
-            var user = new User()
-            {
-                Id = id,
-                Email = command.Email,
-                UserName = command.Email,
-                FirstName = command.FirstName,
-                LastName = command.LastName,
-                CreatedOn = DateTimeOffset.Now,
-                CreatedByUserId = id.ToString(),
-                EmailConfirmed = true,
-                Balance = new UserBalance()
-                {
-                    Id = Guid.NewGuid(),
-                    Credits = 10,
-                    UserId = id,
-                    CreatedOn = DateTimeOffset.Now,
-                    CreatedByUserId = id.ToString(),
-                }
-            };
+            var user = UserAuthRegisterCommand.ToUser(command);
 
             var result = await _userManager.CreateAsync(user, command.Password);
 
@@ -49,13 +30,23 @@ namespace MextFullstackSaaS.Infrastructure.Services
                 throw new Exception("User registration failed");
             }
 
-            return await _jwtService.GenerateTokenAsync(user.Id,user.Email,cancellationToken);
+            return new UserAuthRegisterResponseDto(user.Id, user.Email);
 
         }
 
         public Task<JwtDto> SignInAsync(UserAuthRegisterCommand command, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> IsEmailExistsAsync(string email, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user is not null)
+                return true;
+            
+            return false;
         }
     }
 }
