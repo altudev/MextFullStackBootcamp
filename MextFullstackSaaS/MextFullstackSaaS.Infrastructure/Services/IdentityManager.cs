@@ -2,7 +2,6 @@
 using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Application.Common.Models.Auth;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
-using MextFullstackSaaS.Domain.Entities;
 using MextFullstackSaaS.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 
@@ -29,7 +28,7 @@ namespace MextFullstackSaaS.Infrastructure.Services
             {
                 throw new Exception("User registration failed");
             }
-
+            
             return new UserAuthRegisterResponseDto(user.Id, user.Email);
 
         }

@@ -17,7 +17,7 @@ public class UsersAuthController : ControllerBase
     
     [HttpPost("register")]
     public async Task<IActionResult> RegisterAsync(UserAuthRegisterCommand command, CancellationToken cancellationToken)
-    {
+    { 
         return Ok(await _mediatr.Send(command, cancellationToken));
     }
 }
