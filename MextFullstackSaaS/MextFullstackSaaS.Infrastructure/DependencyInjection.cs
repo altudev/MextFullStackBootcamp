@@ -40,6 +40,7 @@ namespace MextFullstackSaaS.Infrastructure
             
             services.AddScoped<IJwtService, JwtManager>();
             services.AddScoped<IIdentityService, IdentityManager>();
+            services.AddScoped<IEmailService, ResendEmailManager>();
             
             // Resend
             services.AddOptions();
@@ -49,6 +50,7 @@ namespace MextFullstackSaaS.Infrastructure
                 o.ApiToken = configuration.GetSection("ReSendApiKey").Value!;
             } );
             services.AddTransient<IResend, ResendClient>();
+            
 
             return services;
         }
