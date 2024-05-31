@@ -1,6 +1,7 @@
 ﻿using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Application.Common.Models.Auth;
+using MextFullstackSaaS.Application.Features.UserAuth.Commands.Login;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using MextFullstackSaaS.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +18,7 @@ namespace MextFullstackSaaS.Infrastructure.Services
             _userManager = userManager;
             _jwtService = jwtService;
         }
-
+        
         public async Task<UserAuthRegisterResponseDto> RegisterAsync(UserAuthRegisterCommand command, CancellationToken cancellationToken)
         {
             var user = UserAuthRegisterCommand.ToUser(command);
@@ -35,9 +36,13 @@ namespace MextFullstackSaaS.Infrastructure.Services
 
         }
 
-        public Task<JwtDto> SignInAsync(UserAuthRegisterCommand command, CancellationToken cancellationToken)
+        public async Task<JwtDto> LoginAsync(UserAuthLoginCommand command, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+          var user = await _userManager.FindByEmailAsync(command.Email);
+          
+          var jwtDto = await _jwtService.GenerateTokenAsync(user.Id,user.Email,cancellationToken);
+
+          return jwtDto;
         }
 
         public async Task<bool> IsEmailExistsAsync(string email, CancellationToken cancellationToken)
@@ -48,6 +53,15 @@ namespace MextFullstackSaaS.Infrastructure.Services
                 return true;
             
             return false;
+        }
+
+        public async Task<bool> CheckPasswordSignInAsync(string email, string password, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user is null) return false;
+            
+            return await _userManager.CheckPasswordAsync(user, password);
         }
     }
 }
