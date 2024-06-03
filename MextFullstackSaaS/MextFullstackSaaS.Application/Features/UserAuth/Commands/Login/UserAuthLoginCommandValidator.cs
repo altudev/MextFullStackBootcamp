@@ -21,10 +21,21 @@ public class UserAuthLoginCommandValidator:AbstractValidator<UserAuthLoginComman
         RuleFor(x=>x.Email)
             .MustAsync((x,y,cancellationToken) => CheckPasswordSignInAsync(x.Email, x.Password, cancellationToken))
             .WithMessage("Your email or password is incorrect. Please try again.");
+        
+        RuleFor(x=>x.Email)
+            .MustAsync(CheckIfEmailVerifiedAsync)
+            .WithMessage("Email is not verified. Please verify your email.");
+    }
+    
+    private Task<bool> CheckIfEmailVerifiedAsync(string email, CancellationToken cancellationToken)
+    {
+        return _identityService.CheckIfEmailVerifiedAsync(email, cancellationToken);
     }
     
     private Task<bool> CheckPasswordSignInAsync(string email, string password, CancellationToken cancellationToken)
     {
         return _identityService.CheckPasswordSignInAsync(email, password, cancellationToken);
     }
+    
+   
 }

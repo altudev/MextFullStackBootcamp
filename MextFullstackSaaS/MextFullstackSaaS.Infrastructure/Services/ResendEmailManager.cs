@@ -1,3 +1,4 @@
+using System.Web;
 using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Application.Common.Models.Emails;
 using Resend;
@@ -18,7 +19,11 @@ public class ResendEmailManager:IEmailService
     {
         // https://codeshare.io/64xePY
         
-        var link = $"{ApiBaseUrl}UsersAuth/VerifyEmail?email={emailDto.Email}&token={emailDto.Token}";
+        var encodedEmail = HttpUtility.UrlEncode(emailDto.Email);
+        
+        var encodedToken = HttpUtility.UrlEncode(emailDto.Token);
+        
+        var link = $"{ApiBaseUrl}UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}";
         
         var message = new EmailMessage();
         message.From = "alper.tunga@yazilim.academy";

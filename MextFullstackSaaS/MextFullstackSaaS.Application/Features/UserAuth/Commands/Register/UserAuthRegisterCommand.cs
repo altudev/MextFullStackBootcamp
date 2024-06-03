@@ -26,7 +26,7 @@ namespace MextFullstackSaaS.Application.Features.UserAuth.Commands.Register
                 LastName = command.LastName,
                 CreatedOn = DateTimeOffset.UtcNow,
                 CreatedByUserId = id.ToString(),
-                EmailConfirmed = true,
+                EmailConfirmed = false,
                 Balance = new UserBalance()
                 {
                     Id = Guid.NewGuid(),
