@@ -1,16 +1,15 @@
 using FluentValidation;
+using MextFullstackSaaS.Application.Common.FluentValidation.BaseValidators;
 using MextFullstackSaaS.Application.Common.Interfaces;
 
 namespace MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
 
 //https://codeshare.io/mPLBVW
 
-public class UserAuthVerifyEmailCommandValidator:AbstractValidator<UserAuthVerifyEmailCommand>
+public class UserAuthVerifyEmailCommandValidator:UserAuthValidatorBase<UserAuthVerifyEmailCommand>
 {
-    private readonly IIdentityService _identityService;
-    public UserAuthVerifyEmailCommandValidator(IIdentityService identityService)
+    public UserAuthVerifyEmailCommandValidator(IIdentityService identityService):base(identityService)
     {
-        _identityService = identityService;
         RuleFor(p => p.Email)
             .NotEmpty().WithMessage("{PropertyName} is required.")
             .EmailAddress().WithMessage("{PropertyName} is not a valid email address.");
