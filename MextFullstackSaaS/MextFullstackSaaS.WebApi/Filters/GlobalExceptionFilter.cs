@@ -1,18 +1,21 @@
 ﻿using FluentValidation;
 using MextFullstackSaaS.Application.Common.Models;
+using MextFullstackSaaS.Application.Common.Translations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.Extensions.Localization;
 
 namespace MextFullstackSaaS.WebApi.Filters
 {
     public class GlobalExceptionFilter:IExceptionFilter
     {
         private readonly ILogger<GlobalExceptionFilter> _logger;
+        private readonly IStringLocalizer<CommonTranslations> _localizer;
 
-        public GlobalExceptionFilter(ILogger<GlobalExceptionFilter> logger)
+        public GlobalExceptionFilter(ILogger<GlobalExceptionFilter> logger, IStringLocalizer<CommonTranslations> localizer)
         {
             _logger = logger;
+            _localizer = localizer;
         }
 
         public void OnException(ExceptionContext context)
@@ -24,8 +27,8 @@ namespace MextFullstackSaaS.WebApi.Filters
             switch (context.Exception)
             {
                 case ValidationException validationException:
-
-                    var message = "One or more validation errors occurred.";
+                                                    // One or more validation errors occurred.
+                    var message = _localizer[CommonTranslationKeys.GeneralValidationExceptionMessage];
 
                     List<ErrorDto> errors = new List<ErrorDto>();
                     
@@ -55,7 +58,7 @@ namespace MextFullstackSaaS.WebApi.Filters
 
                 default:
 
-                    response.Message = "An unexpected error was occurred.";
+                    response.Message = _localizer[CommonTranslationKeys.GeneralServerExceptionMessage];
 
                     context.Result = new ObjectResult(response)
                     {

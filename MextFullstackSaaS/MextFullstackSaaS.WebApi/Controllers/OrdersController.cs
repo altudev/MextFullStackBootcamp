@@ -1,10 +1,12 @@
 ﻿using MediatR;
+using MextFullstackSaaS.Application.Common.Translations;
 using MextFullstackSaaS.Application.Features.Orders.Commands.Add;
 using MextFullstackSaaS.Application.Features.Orders.Commands.Delete;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetAll;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetById;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace MextFullstackSaaS.WebApi.Controllers
 {
@@ -23,7 +25,6 @@ namespace MextFullstackSaaS.WebApi.Controllers
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-
             return Ok(await _mediatr.Send(new OrderGetByIdQuery(id), cancellationToken));
         }
 
