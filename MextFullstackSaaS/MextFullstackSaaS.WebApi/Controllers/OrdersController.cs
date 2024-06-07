@@ -3,10 +3,12 @@ using MextFullstackSaaS.Application.Features.Orders.Commands.Add;
 using MextFullstackSaaS.Application.Features.Orders.Commands.Delete;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetAll;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetById;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MextFullstackSaaS.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase
@@ -17,7 +19,7 @@ namespace MextFullstackSaaS.WebApi.Controllers
         {
             _mediatr = mediatr;
         }
-
+        
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
@@ -38,6 +40,7 @@ namespace MextFullstackSaaS.WebApi.Controllers
             return Ok(await _mediatr.Send(command, cancellationToken));
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
