@@ -3,13 +3,15 @@ using MextFullstackSaaS.Domain.Settings;
 using MextFullstackSaaS.Infrastructure;
 using MextFullstackSaaS.WebApi;
 using MextFullstackSaaS.WebApi.Filters;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
-    .WriteTo.File("/Users/altudev/Desktop/log.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.File("C:\\Users\\alper\\Desktop\\log.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
 try
@@ -46,7 +48,11 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
-    
+
+    var requestLocalizationOptions = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>();
+
+    app.UseRequestLocalization(requestLocalizationOptions.Value);
+
     app.UseHttpsRedirection();
 
     app.UseAuthentication();
