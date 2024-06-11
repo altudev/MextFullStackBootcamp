@@ -1,6 +1,8 @@
 using System.Web;
 using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Application.Common.Models.Emails;
+using MextFullstackSaaS.Application.Common.Translations;
+using Microsoft.Extensions.Localization;
 using Resend;
 
 namespace MextFullstackSaaS.Infrastructure.Services;
@@ -9,11 +11,13 @@ public class ResendEmailManager:IEmailService
 {
     private readonly IResend _resend;
     private readonly IRootPathService _rootPathService;
+    private readonly IStringLocalizer<CommonTranslations> _localizer;
 
-    public ResendEmailManager(IResend resend, IRootPathService rootPathService)
+    public ResendEmailManager(IResend resend, IRootPathService rootPathService, IStringLocalizer<CommonTranslations> localizer)
     {
         _resend = resend;
         _rootPathService = rootPathService;
+        _localizer = localizer;
     }
 
     private const string ApiBaseUrl = "https://localhost:7281/api/";
@@ -30,13 +34,13 @@ public class ResendEmailManager:IEmailService
 
         htmlContent = htmlContent.Replace("{{{link}}}", link);
 
-        htmlContent = htmlContent.Replace("{{{subject}}}", "Email Verification");
+        htmlContent = htmlContent.Replace("{{{subject}}}", _localizer[CommonTranslationKeys.EmailVerificationSubject]);
 
-        htmlContent = htmlContent.Replace("{{{content}}}", "Kindly click the button below to confirm your email address.");
+        htmlContent = htmlContent.Replace("{{{content}}}", _localizer[CommonTranslationKeys.EmailVerificationContent]);
 
-        htmlContent = htmlContent.Replace("{{{buttonText}}}", "Verify Email");
+        htmlContent = htmlContent.Replace("{{{buttonText}}}", _localizer[CommonTranslationKeys.EmailVerificationButtonText]);
 
-        await SendEmailAsync(new EmailSendDto(emailDto.Email, "Email Verification", htmlContent), cancellationToken);
+        await SendEmailAsync(new EmailSendDto(emailDto.Email, _localizer[CommonTranslationKeys.EmailVerificationSubject], htmlContent), cancellationToken);
     }
 
     public async Task SendForgotPasswordAsync(EmailSendEmailVerificationDto emailDto, CancellationToken cancellationToken)

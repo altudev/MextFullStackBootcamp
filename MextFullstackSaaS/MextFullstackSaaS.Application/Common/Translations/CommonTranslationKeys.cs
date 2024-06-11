@@ -9,4 +9,8 @@ public static class CommonTranslationKeys
     // UserAuth Keys
     public static string UserAuthRegisterSucceededMessage => nameof(UserAuthRegisterSucceededMessage);
     public static string UserAuthVerifyEmailSucceededMessage => nameof(UserAuthVerifyEmailSucceededMessage);
+
+    public static string EmailVerificationSubject => nameof(EmailVerificationSubject);
+    public static string EmailVerificationButtonText => nameof(EmailVerificationButtonText);
+    public static string EmailVerificationContent => nameof(EmailVerificationContent);
 }

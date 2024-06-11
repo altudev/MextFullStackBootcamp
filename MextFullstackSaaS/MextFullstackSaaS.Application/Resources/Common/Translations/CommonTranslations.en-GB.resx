@@ -112,4 +112,13 @@
   <data name="UserAuthVerifyEmailSucceededMessage" xml:space="preserve">
     <value>Your {0} e-mail address verified successfully.</value>
   </data>
+  <data name="EmailVerificationSubject" xml:space="preserve">
+    <value>Email Verification</value>
+  </data>
+  <data name="EmailVerificationContent" xml:space="preserve">
+    <value>Kindly click the button below to confirm your email address.</value>
+  </data>
+  <data name="EmailVerificationButtonText" xml:space="preserve">
+    <value>Verify Email</value>
+  </data>
 </root>
