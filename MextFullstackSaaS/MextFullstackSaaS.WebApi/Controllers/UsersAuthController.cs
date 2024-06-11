@@ -1,4 +1,5 @@
 using MediatR;
+using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Login;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
@@ -24,7 +25,7 @@ public class UsersAuthController(ISender mediatr) : ControllerBase
     
     [HttpGet("verify-email")]
     public async Task<IActionResult>VerifyEmailAsync([FromQuery] UserAuthVerifyEmailCommand command, CancellationToken cancellationToken)
-    { 
+    {
         return Ok(await mediatr.Send(command, cancellationToken));
     }
 }

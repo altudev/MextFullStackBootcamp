@@ -1,0 +1,139 @@
+﻿@page "/login"
+@using System.ComponentModel.DataAnnotations
+
+@* Login page container with gradient background *@
+<section class="from-[#FC354C] to-[#0072ff] min-h-screen bg-gradient-to-r py-10 sm:py-16 lg:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        @* Login page content *@
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">Welcome Back!</h2>
+            <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-gray-200">Login to your account</p>
+        </div>
+
+        @* Login form container *@
+        <div class="relative mx-auto mt-8 max-w-md md:mt-16">
+            <div class="overflow-hidden rounded-md bg-white shadow-md">
+                <div class="px-4 py-6 sm:px-8 sm:py-7">
+                    @* Login form *@
+                    <EditForm Model="@loginModel" OnSubmit="HandleSubmit" FormName="loginform">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary class="mb-1 text-red-500" />
+                        <div class="space-y-5">
+                            @* Email input *@
+                            <div>
+                                <label class="text-base font-medium text-gray-900"> Email Address </label>
+                                <div class="relative mt-2.5 text-gray-400 focus-within:text-gray-600">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <svg class="h-5 w-5" fill="#31363F" height="24px" width="24px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             viewBox="0 0 75.294 75.294" xml:space="preserve">
+                                        <g>
+                                        <path d="M66.097,12.089h-56.9C4.126,12.089,0,16.215,0,21.286v32.722c0,5.071,4.126,9.197,9.197,9.197h56.9
+		c5.071,0,9.197-4.126,9.197-9.197V21.287C75.295,16.215,71.169,12.089,66.097,12.089z M61.603,18.089L37.647,33.523L13.691,18.089
+		H61.603z M66.097,57.206h-56.9C7.434,57.206,6,55.771,6,54.009V21.457l29.796,19.16c0.04,0.025,0.083,0.042,0.124,0.065
+		c0.043,0.024,0.087,0.047,0.131,0.069c0.231,0.119,0.469,0.215,0.712,0.278c0.025,0.007,0.05,0.01,0.075,0.016
+		c0.267,0.063,0.537,0.102,0.807,0.102c0.001,0,0.002,0,0.002,0c0.002,0,0.003,0,0.004,0c0.27,0,0.54-0.038,0.807-0.102
+		c0.025-0.006,0.05-0.009,0.075-0.016c0.243-0.063,0.48-0.159,0.712-0.278c0.044-0.022,0.088-0.045,0.131-0.069
+		c0.041-0.023,0.084-0.04,0.124-0.065l29.796-19.16v32.551C69.295,55.771,67.86,57.206,66.097,57.206z" />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <InputText type="email" @bind-Value="loginModel.Email" placeholder="Enter your email address" class="block w-full rounded-md border border-gray-200 bg-white py-4 pl-10 pr-4 text-black placeholder-gray-500 caret-blue-600 transition-all duration-200 focus:border-blue-600 focus:outline-none" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            @* Password input *@
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <label for="" class="text-base font-medium text-gray-900"> Password </label>
+
+                                    <a @onclick="HandleForgotPassword" class="cursor-pointer text-sm font-medium text-indigo-500 transition-all duration-200 hover:text-indigo-600 hover:underline focus:text-indigo-600"> Forgot password? </a>
+                                </div>
+                                <div class="relative mt-2.5 text-gray-400 focus-within:text-gray-600">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <svg class="h-5 w-5" fill="#31363F" width="800px" height="800px" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
+                                            <defs>
+                                                <style>
+                                                    .cls-1 {
+                                                        fill: none;
+                                                    }
+                                                </style>
+                                            </defs>
+                                            <path d="M21,2a8.9977,8.9977,0,0,0-8.6119,11.6118L2,24v6H8L18.3881,19.6118A9,9,0,1,0,21,2Zm0,16a7.0125,7.0125,0,0,1-2.0322-.3022L17.821,17.35l-.8472.8472-3.1811,3.1812L12.4141,20,11,21.4141l1.3787,1.3786-1.5859,1.586L9.4141,23,8,24.4141l1.3787,1.3786L7.1716,28H4V24.8284l9.8023-9.8023.8472-.8474-.3473-1.1467A7,7,0,1,1,21,18Z" />
+                                            <circle cx="22" cy="10" r="2" />
+                                            <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32" />
+                                        </svg>
+                                    </div>
+
+                                    <InputText @bind-Value="loginModel.Password" type="password" placeholder="Enter your password" class="block w-full rounded-md border border-gray-200 bg-white py-4 pl-10 pr-4 text-black placeholder-gray-500 caret-blue-600 transition-all duration-200 focus:border-blue-600 focus:outline-none" />
+                                </div>
+                            </div>
+
+                            @* Login button *@
+                            <div>
+                                <button type="submit" class="inline-flex w-full items-center justify-center rounded-md bg-gradient-to-r from-cyan-400 to-pink-600 px-4 py-4 text-base font-semibold text-white transition-all duration-200 hover:opacity-90 focus:outline-none">Log in</button>
+                            </div>
+
+                            @* Google sign-in button *@
+                            <div>
+                                <button @onclick="HandleGoogleLogin" class="inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-4 py-4 text-base font-semibold text-white transition-all duration-200 hover:opacity-90 focus:outline-none">
+                                    <svg class="mr-2 h-5 w-5" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                                    Sign in with Google
+                                </button>
+                            </div>
+
+                            @* Create account link *@
+                            <div class="text-center">
+                                <p @onclick="HandleCreateAccount" class="cursor-pointer text-base text-gray-600">Don't have an account? <a class="font-medium text-indigo-500 transition-all duration-200 hover:text-indigo-600 hover:underline">Create a free account</a></p>
+                            </div>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code
+{
+    // Login model to bind form data
+    private LoginModel loginModel = new LoginModel();
+
+    // Handle form submission
+    private async Task HandleSubmit()
+    {
+        // Implement login logic here
+    }
+
+    // Handle Google sign-in
+    private async Task HandleGoogleLogin()
+    {
+        // Handle Google sign-in logic here
+    }
+
+    // Handle forgot password link click
+    private async Task HandleForgotPassword()
+    {
+        // Implement forgot password logic here
+    }
+
+    // Handle create account link click
+    private async Task HandleCreateAccount()
+    {
+        // Implement create account logic here
+    }
+
+    // Login model class
+    internal class LoginModel
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [MinLength(6)]
+        public string Password { get; set; }
+    }
+}
