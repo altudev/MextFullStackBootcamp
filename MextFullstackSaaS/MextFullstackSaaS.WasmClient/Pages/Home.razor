@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
 
 <PageTitle>Home</PageTitle>
 
@@ -6,4 +8,10 @@
 
 Welcome to your new app.
 
-<Loading/>
+<Loading />
+
+
+@code
+{
+
+}

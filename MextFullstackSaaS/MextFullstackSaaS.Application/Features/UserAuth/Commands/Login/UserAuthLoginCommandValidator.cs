@@ -13,7 +13,9 @@ public class UserAuthLoginCommandValidator:UserAuthValidatorBase<UserAuthLoginCo
             .Must(IsEmail).WithMessage("Email is not valid");
 
         RuleFor(x => x.Password)
-            .NotEmpty().WithMessage("Password is required")
+            .NotEmpty()
+            .NotNull()
+            .WithMessage("Password is required")
             .MinimumLength(6).WithMessage("Password must be at least 6 characters");
         
         RuleFor(x=>x.Email)
