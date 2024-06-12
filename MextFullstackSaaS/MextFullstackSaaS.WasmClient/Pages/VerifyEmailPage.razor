@@ -1,0 +1,76 @@
+﻿@page "/verify-email"
+@using System.Web
+@using MextFullstackSaaS.Application.Common.Models
+@using MextFullstackSaaS.WasmClient.Services
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+@inject IToasterService ToasterService
+
+@if (isLoading)
+{
+    <Loading/>
+}
+else
+{
+    <div class="flex min-h-screen items-center justify-center">
+        <div class="card w-146 bg-[#496989] shadow-xl">
+            <div class="card-body items-center text-center">
+                <h2 class="card-title text-3xl">🎉 Congratulations! 🎉</h2>
+                <p class="mt-4 text-lg">Your email has been successfully confirmed.</p>
+                <div class="mt-6">
+                    <p class="text-xl font-semibold">Email:</p>
+                    <p class="text-base">@Email</p>
+                </div>
+                <div class="card-actions mt-8">
+                    <button class="btn btn-info" @onclick="@(() => @NavigationManager.NavigateTo("/login"))">Go to Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [SupplyParameterFromQuery]
+    [Parameter] 
+    public string Email { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter] 
+    public string Token { get; set; }
+
+    public bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        isLoading = true;
+
+        try
+        {
+            var encodedEmail = HttpUtility.UrlEncode(Email);
+            var encodedToken = HttpUtility.UrlEncode(Token);
+
+          var response = await HttpClient.GetAsync($"UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}");
+
+          if (response.IsSuccessStatusCode)
+          {
+
+                var responseDto = await response.Content.ReadFromJsonAsync<ResponseDto<string>>();
+
+                ToasterService.ShowSuccess(responseDto.Message);
+
+                isLoading = false;
+          }
+          else
+          {
+              ToasterService.ShowError($"An unexpected error occurred. {response.StatusCode}");
+          }
+        }
+        catch (Exception e)
+        {
+            ToasterService.ShowError(e.Message);
+        }
+    }
+
+}

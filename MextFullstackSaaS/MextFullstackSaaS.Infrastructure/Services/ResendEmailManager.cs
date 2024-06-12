@@ -20,14 +20,14 @@ public class ResendEmailManager:IEmailService
         _localizer = localizer;
     }
 
-    private const string ApiBaseUrl = "https://localhost:7281/api/";
+    private const string WebAppBaseUrl = "http://localhost:5262/";
     public async Task SendEmailVerificationAsync(EmailSendEmailVerificationDto emailDto, CancellationToken cancellationToken)
     {
         var encodedEmail = HttpUtility.UrlEncode(emailDto.Email);
         
         var encodedToken = HttpUtility.UrlEncode(emailDto.Token);
         
-        var link = $"{ApiBaseUrl}UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}";
+        var link = $"{WebAppBaseUrl}verify-email?email={encodedEmail}&token={encodedToken}";
 
         var htmlContent =
             await File.ReadAllTextAsync($"{_rootPathService.GetRootPath()}/email-templates/userauth-template.html",cancellationToken);
@@ -49,7 +49,7 @@ public class ResendEmailManager:IEmailService
 
         var encodedToken = HttpUtility.UrlEncode(emailDto.Token);
 
-        var link = $"{ApiBaseUrl}UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}";
+        var link = $"{WebAppBaseUrl}UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}";
 
         var htmlContent =
             await File.ReadAllTextAsync($"{_rootPathService.GetRootPath()}/email-templates/userauth-template.html", cancellationToken);

@@ -2,6 +2,7 @@
 using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Application.Common.Models.OpenAI;
+using MextFullstackSaaS.Domain.Entities;
 
 namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
 {
@@ -20,17 +21,13 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
 
         public async Task<ResponseDto<Guid>> Handle(OrderAddCommand request, CancellationToken cancellationToken)
         {
-           var order = OrderAddCommand.MapToOrder(request);
+           var order = OrderAddCommand.MapToOrder(request,_currentUserService.UserId);
 
-           order.UserId = _currentUserService.UserId;
-           order.CreatedByUserId = _currentUserService.UserId.ToString();
            order.Urls =
                await _openAiService.DallECreateIconAsync(DallECreateIconRequestDto.MapFromOrderAddCommand(request),
                    cancellationToken);
 
             /* TODO: Make Request to the Gemine or Dall-e 3 */
-
-            _dbContext.Orders.Add(order);
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
