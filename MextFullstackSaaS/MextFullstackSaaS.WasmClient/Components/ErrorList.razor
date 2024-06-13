@@ -1,0 +1,30 @@
+﻿@using MextFullstackSaaS.Application.Common.Models
+
+
+<div class="container mx-auto mb-4 mt-4">
+    @if (Errors != null && Errors.Count > 0)
+    {
+        <div class="alert alert-error rounded-md bg-red-100 p-4 shadow-lg">
+            <ul class="ml-4 list-inside list-disc">
+                @foreach (var error in Errors)
+                {
+                    <li>
+                        <strong>@error.PropertyName:</strong>
+                        <ul class="ml-4">
+                            @foreach (var message in error.Messages)
+                            {
+                                <li>@message</li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public List<ErrorDto> Errors { get; set; } = new List<ErrorDto>();
+    }
+

@@ -26,8 +26,7 @@ namespace MextFullstackSaaS.WasmClient
             {
                 var claims = JwtHelper
                     .ReadClaimsFromToken(jwtDto.Token)
-                    .Append(new Claim("Token", jwtDto.Token))
-                    .Append(new Claim("Name", jwtDto.Token));
+                    .Append(new Claim("Token", jwtDto.Token));
 
                 var identity = new ClaimsIdentity(claims, "jwt");
 

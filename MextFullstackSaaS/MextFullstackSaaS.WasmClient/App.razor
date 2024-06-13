@@ -3,7 +3,7 @@
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
-            <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <Authorizing>
                     <p>Checking your authorisation...</p>
