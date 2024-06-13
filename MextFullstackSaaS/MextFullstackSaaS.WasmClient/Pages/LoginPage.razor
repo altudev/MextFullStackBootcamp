@@ -108,10 +108,23 @@
 
 @code
 {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
     // Login model to bind form data
     private UserAuthLoginCommand command = new();
     private bool isLoading = false;
     private List<ErrorDto> errors = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await authenticationStateTask;
+
+        if (authState.User.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
 
     // Handle form submission
     private async Task HandleSubmit()

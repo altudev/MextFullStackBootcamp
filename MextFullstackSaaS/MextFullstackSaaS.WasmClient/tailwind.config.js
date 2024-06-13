@@ -2,7 +2,12 @@
 module.exports = {
     content: ['./**/*.{razor,html,cshtml}'],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                poppins: ['Poppins', 'sans-serif'],
+                // You can add other font families if needed
+            },
+        },
     },
   plugins: [
       require('daisyui'),

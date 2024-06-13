@@ -1,0 +1,78 @@
+﻿@using Blazored.LocalStorage
+@using MextFullstackSaaS.WasmClient.Services
+@using MextFullstackSaaS.WasmClient.Components.Icons
+@inject AuthenticationStateProvider AuthStateProvider
+@inject IToasterService ToasterService
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+
+<div class="navbar bg-base-100 px-4">
+    <div class="navbar-start">
+        <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content z-[1] rounded-box mt-3 w-52 bg-base-100 p-2 shadow">
+                <li><a>Item 1</a></li>
+                <li>
+                    <a>Parent</a>
+                    <ul class="p-2">
+                        <li><a>Submenu 1</a></li>
+                        <li><a>Submenu 2</a></li>
+                    </ul>
+                </li>
+                <li><a>Item 3</a></li>
+            </ul>
+        </div>
+        <NavLink class="btn btn-ghost text-xl" href="/">
+            IconBuilderAI
+        </NavLink>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-2">
+            <li class="mr-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span aria-hidden="true">
+                        <OiHomeIcon />
+                    </span> Home
+                </NavLink>
+            </li>
+            <li class="mr-3">
+                <NavLink class="nav-link" href="generate">
+                    <span aria-hidden="true">
+                        <OiPikachuIcon />
+                    </span> Generate
+                </NavLink>
+            </li>
+            <li>
+                <NavLink class="nav-link" href="community">
+                    <span aria-hidden="true">
+                        <OiHeartIcon />
+                    </span> Community
+                </NavLink>
+            </li>
+
+        </ul>
+    </div>
+    <div class="navbar-end">
+        <AuthorizeView>
+            <Authorized>
+                <button class="btn btn-primary" @onclick="Logout">Logout</button>
+            </Authorized>
+            <NotAuthorized>
+                <button class="btn btn-secondary" @onclick="@(() => NavigationManager.NavigateTo("/login"))">Login</button>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+@code {
+    private async Task Logout()
+    {
+        await LocalStorage.RemoveItemAsync("cto");
+
+        await AuthStateProvider.GetAuthenticationStateAsync();
+
+        ToasterService.ShowSuccess("You have been logged out.");
+    }
+}
