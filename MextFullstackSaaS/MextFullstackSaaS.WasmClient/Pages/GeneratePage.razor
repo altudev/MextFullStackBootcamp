@@ -1,7 +1,67 @@
 ﻿@page "/generate"
+@using MextFullstackSaaS.Application.Features.Orders.Commands.Add
 
-<h3>GeneratePage</h3>
+<div class="flex min-h-screen items-center justify-center text-white">
+    <div class="rounded-lg p-6 shadow-xl">
+        <h1 class="mb-4 text-2xl font-bold">Let's generate your icon. ✨</h1>
+        <p class="mb-4">Your results may vary. We are working on fine-tuning results for each style. Here are some tips to make better icons:</p>
+        <ul class="list-disc space-y-2 pl-6">
+            <li>Do not ask for words or letters, AI does not generate characters and words correctly</li>
+            <li>Simple prompts often work best</li>
+            <li>Use variants once you find a starting icon you like</li>
+            <li>Experiment with adding words, such as happy or vibrant</li>
+        </ul>
+        <EditForm FormName="icon-generate-form" Model="@command">
+            <div class="mt-6">
+                <label class="mb-2 block text-sm font-medium text-gray-400" for="iconDescription">
+                    1. Describe your icon using a noun and adjective
+                </label>
+                <InputText class="w-full rounded-lg border border-blue-500 bg-gray-800 p-2 text-white"
+                           type="text"
+                           id="iconDescription"
+                           placeholder="an angry chicken"
+                           @bind-Value="@command.IconDescription"/>
+            </div>
+            
+            <div class="mt-8">
+                <label class="mb-4 block text-lg font-medium text-white" for="colorSelection">
+                    2. Select a primary color for your icon
+                </label>
+                <div class="mb-4 flex space-x-4">
+                    <button class="border-b-2 border-transparent pb-2 text-gray-400 hover:border-white">Predefined</button>
+                    <button class="border-b-2 border-transparent pb-2 text-gray-400 hover:border-white">Picker</button>
+                    <button class="border-b-2 border-transparent pb-2 text-gray-400 hover:border-white">Custom</button>
+                </div>
+                <div class="grid-cols-8 grid gap-4">
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-blue-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-red-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-yellow-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-purple-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-yellow-500"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-gray-400"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-teal-500"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-green-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-teal-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-black"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-green-500"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-red-800"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-indigo-900"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-yellow-800"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-gray-600"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-purple-900"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-pink-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-green-800"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-lime-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-fuchsia-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-amber-700"></div>
+                    <div class="h-12 w-12 cursor-pointer rounded-lg bg-cyan-700"></div>
+                </div>
+            </div>
+
+        </EditForm>
+    </div>
+</div>
 
 @code {
-
+    private OrderAddCommand command = new OrderAddCommand();
 }
