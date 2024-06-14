@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MextFullstackSaaS.Application.Common.Translations;
 using MextFullstackSaaS.Application.Features.Orders.Commands.Add;
+using MextFullstackSaaS.Application.Features.Orders.Commands.AddRange;
 using MextFullstackSaaS.Application.Features.Orders.Commands.Delete;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetAll;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetById;
@@ -41,7 +42,12 @@ namespace MextFullstackSaaS.WebApi.Controllers
             return Ok(await _mediatr.Send(command, cancellationToken));
         }
 
-        [AllowAnonymous]
+        [HttpPost("AddRange")]
+        public async Task<IActionResult> AddRangeAsync(OrderAddRangeCommand command, CancellationToken cancellationToken)
+        {
+            return Ok(await _mediatr.Send(command, cancellationToken));
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {

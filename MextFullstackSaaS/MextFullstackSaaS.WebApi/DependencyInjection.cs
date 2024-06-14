@@ -13,6 +13,8 @@ namespace MextFullstackSaaS.WebApi
     {
         public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddMemoryCache();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",

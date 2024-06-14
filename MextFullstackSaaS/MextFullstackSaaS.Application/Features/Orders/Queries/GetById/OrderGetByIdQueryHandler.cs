@@ -1,26 +1,39 @@
 ﻿using MediatR;
+using MextFullstackSaaS.Application.Common.Helpers;
 using MextFullstackSaaS.Application.Common.Interfaces;
+using MextFullstackSaaS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace MextFullstackSaaS.Application.Features.Orders.Queries.GetById
 {
-    public class OrderGetByIdQueryHandler:IRequestHandler<OrderGetByIdQuery,OrderGetByIdDto>
+    public class OrderGetByIdQueryHandler : IRequestHandler<OrderGetByIdQuery, OrderGetByIdDto>
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly IMemoryCache _memoryCache;
 
-        public OrderGetByIdQueryHandler(IApplicationDbContext dbContext)
+        public OrderGetByIdQueryHandler(IApplicationDbContext dbContext, IMemoryCache memoryCache)
         {
             _dbContext = dbContext;
+            _memoryCache = memoryCache;
         }
 
         public async Task<OrderGetByIdDto> Handle(OrderGetByIdQuery request, CancellationToken cancellationToken)
         {
-            var order = await _dbContext
+            OrderGetByIdDto order;
+
+            if (_memoryCache.TryGetValue(MemoryCacheHelper.GetOrderGetByIdKey(request.Id), out order))
+                return order;
+
+            order = await _dbContext
                 .Orders
                 .AsNoTracking()
+                .Select(x => OrderGetByIdDto.MapFromOrder(x))
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-            return OrderGetByIdDto.MapFromOrder(order);
+            _memoryCache.Set(MemoryCacheHelper.GetOrderGetByIdKey(request.Id), order, MemoryCacheHelper.GetMemoryCacheEntryOptions());
+
+            return order;
         }
     }
 }
