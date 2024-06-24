@@ -1,0 +1,382 @@
+2024-06-24 09:36:45.692 +03:00 [INF] Starting web application
+2024-06-24 09:36:46.480 +03:00 [INF] User profile is available. Using '/Users/altudev/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2024-06-24 09:36:46.564 +03:00 [INF] Now listening on: http://localhost:5121
+2024-06-24 09:36:46.566 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-24 09:36:46.567 +03:00 [INF] Hosting environment: Development
+2024-06-24 09:36:46.567 +03:00 [INF] Content root path: /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.WebApi
+2024-06-24 09:36:47.430 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger - null null
+2024-06-24 09:36:47.497 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger - 301 0 null 73.2454ms
+2024-06-24 09:36:47.505 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/index.html - null null
+2024-06-24 09:36:47.603 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/index.html - 200 null text/html;charset=utf-8 98.2474ms
+2024-06-24 09:36:48.008 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui.css - null null
+2024-06-24 09:36:48.040 +03:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-06-24 09:36:48.043 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui.css - 200 143943 text/css 35.3544ms
+2024-06-24 09:36:48.070 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-standalone-preset.js - null null
+2024-06-24 09:36:48.070 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-bundle.js - null null
+2024-06-24 09:36:48.076 +03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-06-24 09:36:48.077 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 7.013ms
+2024-06-24 09:36:48.081 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-06-24 09:36:48.082 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 12.1085ms
+2024-06-24 09:36:48.137 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-standalone-preset.js - null null
+2024-06-24 09:36:48.140 +03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-06-24 09:36:48.141 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 3.6635ms
+2024-06-24 09:36:48.142 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-bundle.js - null null
+2024-06-24 09:36:48.146 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-06-24 09:36:48.146 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 4.7086ms
+2024-06-24 09:36:48.443 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/v1/swagger.json - null null
+2024-06-24 09:36:48.499 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/favicon-32x32.png - null null
+2024-06-24 09:36:48.500 +03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-06-24 09:36:48.500 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/favicon-32x32.png - 200 628 image/png 1.309ms
+2024-06-24 09:36:48.502 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/favicon-16x16.png - null null
+2024-06-24 09:36:48.503 +03:00 [INF] Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+2024-06-24 09:36:48.503 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/favicon-16x16.png - 200 665 image/png 1.4385ms
+2024-06-24 09:36:48.621 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/apple-touch-icon-precomposed.png - null null
+2024-06-24 09:36:48.639 +03:00 [WRN] Failed to determine the https port for redirect.
+2024-06-24 09:36:48.690 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 247.1626ms
+2024-06-24 09:36:48.694 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/apple-touch-icon-precomposed.png - 404 0 null 72.5283ms
+2024-06-24 09:36:48.697 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5121/apple-touch-icon-precomposed.png, Response status code: 404
+2024-06-24 09:36:48.697 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/apple-touch-icon.png - null null
+2024-06-24 09:36:48.700 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/apple-touch-icon.png - 404 0 null 2.6036ms
+2024-06-24 09:36:48.701 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5121/apple-touch-icon.png, Response status code: 404
+2024-06-24 10:28:58.637 +03:00 [INF] Application is shutting down...
+2024-06-24 10:29:14.664 +03:00 [INF] Starting web application
+2024-06-24 10:29:15.256 +03:00 [INF] User profile is available. Using '/Users/altudev/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2024-06-24 10:29:15.354 +03:00 [INF] Now listening on: http://localhost:5121
+2024-06-24 10:29:15.356 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-24 10:29:15.356 +03:00 [INF] Hosting environment: Development
+2024-06-24 10:29:15.356 +03:00 [INF] Content root path: /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.WebApi
+2024-06-24 10:29:16.095 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/index.html - null null
+2024-06-24 10:29:16.340 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/index.html - 200 null text/html;charset=utf-8 246.9041ms
+2024-06-24 10:29:17.037 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/v1/swagger.json - null null
+2024-06-24 10:29:17.240 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 202.9764ms
+2024-06-24 10:29:32.284 +03:00 [INF] Application is shutting down...
+2024-06-24 10:29:38.123 +03:00 [INF] Starting web application
+2024-06-24 10:29:38.778 +03:00 [INF] User profile is available. Using '/Users/altudev/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2024-06-24 10:29:39.436 +03:00 [INF] Now listening on: https://localhost:7281
+2024-06-24 10:29:39.436 +03:00 [INF] Now listening on: http://localhost:5121
+2024-06-24 10:29:39.438 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-24 10:29:39.438 +03:00 [INF] Hosting environment: Development
+2024-06-24 10:29:39.438 +03:00 [INF] Content root path: /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.WebApi
+2024-06-24 10:29:40.124 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/index.html - null null
+2024-06-24 10:29:40.262 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/index.html - 200 null text/html;charset=utf-8 143.8131ms
+2024-06-24 10:29:40.293 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/swagger-ui-standalone-preset.js - null null
+2024-06-24 10:29:40.293 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/swagger-ui-bundle.js - null null
+2024-06-24 10:29:40.325 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-06-24 10:29:40.325 +03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-06-24 10:29:40.326 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 32.9931ms
+2024-06-24 10:29:40.326 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 32.9966ms
+2024-06-24 10:29:40.512 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - null null
+2024-06-24 10:29:40.678 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 165.8485ms
+2024-06-24 10:53:46.328 +03:00 [INF] Application is shutting down...
+2024-06-24 10:54:50.339 +03:00 [INF] Starting web application
+2024-06-24 10:54:50.906 +03:00 [INF] User profile is available. Using '/Users/altudev/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2024-06-24 10:54:51.551 +03:00 [INF] Now listening on: https://localhost:7281
+2024-06-24 10:54:51.551 +03:00 [INF] Now listening on: http://localhost:5121
+2024-06-24 10:54:51.553 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-24 10:54:51.553 +03:00 [INF] Hosting environment: Development
+2024-06-24 10:54:51.553 +03:00 [INF] Content root path: /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.WebApi
+2024-06-24 10:54:52.165 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/index.html - null null
+2024-06-24 10:54:52.314 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/index.html - 200 null text/html;charset=utf-8 155.2382ms
+2024-06-24 10:54:52.581 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - null null
+2024-06-24 10:54:52.761 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 180.5175ms
+2024-06-24 10:58:14.246 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/UsersAuth/login - null null
+2024-06-24 10:58:14.251 +03:00 [INF] CORS policy execution successful.
+2024-06-24 10:58:14.252 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/UsersAuth/login - 204 null null 6.2761ms
+2024-06-24 10:58:14.254 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/UsersAuth/login - application/json; charset=utf-8 64
+2024-06-24 10:58:14.264 +03:00 [INF] CORS policy execution successful.
+2024-06-24 10:58:14.303 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 10:58:14.329 +03:00 [INF] Route matched with {action = "Login", controller = "UsersAuth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] LoginAsync(MextFullstackSaaS.Application.Features.UserAuth.Commands.Login.UserAuthLoginCommand, System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.UsersAuthController (MextFullstackSaaS.WebApi).
+2024-06-24 10:58:14.360 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 10:58:17.580 +03:00 [INF] Executed DbCommand (110ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."AccessFailedCount", u."ConcurrencyStamp", u."CreatedByUserId", u."CreatedOn", u."Email", u."EmailConfirmed", u."FirstName", u."LastName", u."LockoutEnabled", u."LockoutEnd", u."ModifiedByUserId", u."ModifiedOn", u."NormalizedEmail", u."NormalizedUserName", u."PasswordHash", u."PhoneNumber", u."PhoneNumberConfirmed", u."SecurityStamp", u."TwoFactorEnabled", u."UserName"
+FROM "Users" AS u
+WHERE u."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2024-06-24 10:58:17.844 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/UsersAuth/login - application/json; charset=utf-8 64
+2024-06-24 10:58:17.845 +03:00 [INF] CORS policy execution successful.
+2024-06-24 10:58:17.847 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 10:58:17.848 +03:00 [INF] Route matched with {action = "Login", controller = "UsersAuth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] LoginAsync(MextFullstackSaaS.Application.Features.UserAuth.Commands.Login.UserAuthLoginCommand, System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.UsersAuthController (MextFullstackSaaS.WebApi).
+2024-06-24 10:58:17.856 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u
+    WHERE u."Email" = @__email_0 AND u."EmailConfirmed")
+2024-06-24 10:58:17.863 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 10:58:17.876 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."AccessFailedCount", u."ConcurrencyStamp", u."CreatedByUserId", u."CreatedOn", u."Email", u."EmailConfirmed", u."FirstName", u."LastName", u."LockoutEnabled", u."LockoutEnd", u."ModifiedByUserId", u."ModifiedOn", u."NormalizedEmail", u."NormalizedUserName", u."PasswordHash", u."PhoneNumber", u."PhoneNumberConfirmed", u."SecurityStamp", u."TwoFactorEnabled", u."UserName"
+FROM "Users" AS u
+WHERE u."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2024-06-24 10:58:17.921 +03:00 [INF] Executed action method MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 3552.608ms.
+2024-06-24 10:58:17.930 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."AccessFailedCount", u."ConcurrencyStamp", u."CreatedByUserId", u."CreatedOn", u."Email", u."EmailConfirmed", u."FirstName", u."LastName", u."LockoutEnabled", u."LockoutEnd", u."ModifiedByUserId", u."ModifiedOn", u."NormalizedEmail", u."NormalizedUserName", u."PasswordHash", u."PhoneNumber", u."PhoneNumberConfirmed", u."SecurityStamp", u."TwoFactorEnabled", u."UserName"
+FROM "Users" AS u
+WHERE u."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2024-06-24 10:58:17.934 +03:00 [INF] Executing OkObjectResult, writing value of type 'MextFullstackSaaS.Application.Common.Models.ResponseDto`1[[MextFullstackSaaS.Application.Common.Models.JwtDto, MextFullstackSaaS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-24 10:58:17.989 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi) in 3653.9916ms
+2024-06-24 10:58:17.991 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 10:58:18.011 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u
+    WHERE u."Email" = @__email_0 AND u."EmailConfirmed")
+2024-06-24 10:58:18.011 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/UsersAuth/login - 200 null application/json; charset=utf-8 3757.2952ms
+2024-06-24 10:58:18.014 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."AccessFailedCount", u."ConcurrencyStamp", u."CreatedByUserId", u."CreatedOn", u."Email", u."EmailConfirmed", u."FirstName", u."LastName", u."LockoutEnabled", u."LockoutEnd", u."ModifiedByUserId", u."ModifiedOn", u."NormalizedEmail", u."NormalizedUserName", u."PasswordHash", u."PhoneNumber", u."PhoneNumberConfirmed", u."SecurityStamp", u."TwoFactorEnabled", u."UserName"
+FROM "Users" AS u
+WHERE u."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2024-06-24 10:58:18.016 +03:00 [INF] Executed action method MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 152.5868ms.
+2024-06-24 10:58:18.016 +03:00 [INF] Executing OkObjectResult, writing value of type 'MextFullstackSaaS.Application.Common.Models.ResponseDto`1[[MextFullstackSaaS.Application.Common.Models.JwtDto, MextFullstackSaaS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-24 10:58:18.017 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi) in 155.2532ms
+2024-06-24 10:58:18.017 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 10:58:18.017 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/UsersAuth/login - 200 null application/json; charset=utf-8 173.2291ms
+2024-06-24 11:03:19.123 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Orders - null null
+2024-06-24 11:03:19.124 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:03:19.124 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Orders - 204 null null 0.7473ms
+2024-06-24 11:03:19.127 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Orders - application/json; charset=utf-8 123
+2024-06-24 11:03:19.164 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:03:19.227 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:03:19.232 +03:00 [INF] Route matched with {action = "Add", controller = "Orders"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddAsync(MextFullstackSaaS.Application.Features.Orders.Commands.Add.OrderAddCommand, System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.OrdersController (MextFullstackSaaS.WebApi).
+2024-06-24 11:03:19.273 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 11:03:19.429 +03:00 [ERR] Validation failed: 
+ -- Quantity: 'Quantity' must be greater than '0'. Severity: Error
+FluentValidation.ValidationException: Validation failed: 
+ -- Quantity: 'Quantity' must be greater than '0'. Severity: Error
+   at MextFullstackSaaS.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.Application/Common/Behaviours/ValidationBehaviour.cs:line 32
+   at MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync(OrderAddCommand command, CancellationToken cancellationToken) in /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.WebApi/Controllers/OrdersController.cs:line 42
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2024-06-24 11:03:19.471 +03:00 [INF] Executing BadRequestObjectResult, writing value of type 'MextFullstackSaaS.Application.Common.Models.ResponseDto`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-24 11:03:19.475 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi) in 243.0619ms
+2024-06-24 11:03:19.475 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:03:19.475 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Orders - 400 null application/json; charset=utf-8 348.7594ms
+2024-06-24 11:06:12.053 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Orders - null null
+2024-06-24 11:06:12.053 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:06:12.054 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Orders - 204 null null 0.7711ms
+2024-06-24 11:06:12.055 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Orders - application/json; charset=utf-8 123
+2024-06-24 11:06:12.055 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:06:12.058 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:06:12.058 +03:00 [INF] Route matched with {action = "Add", controller = "Orders"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddAsync(MextFullstackSaaS.Application.Features.Orders.Commands.Add.OrderAddCommand, System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.OrdersController (MextFullstackSaaS.WebApi).
+2024-06-24 11:06:12.059 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 11:06:12.096 +03:00 [INF] Start processing HTTP request POST https://api.openai.com/v1/images/generations
+2024-06-24 11:06:12.098 +03:00 [INF] Sending HTTP request POST https://api.openai.com/v1/images/generations
+2024-06-24 11:06:28.747 +03:00 [INF] Received HTTP response headers after 16641.7054ms - 200
+2024-06-24 11:06:28.749 +03:00 [INF] End processing HTTP request after 16655.8567ms - 200
+2024-06-24 11:06:29.238 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Int32), @p6='?', @p7='?' (DbType = Int32), @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = Int32), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?', @p14='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Orders" ("Id", "ColourCode", "CreatedByUserId", "CreatedOn", "Description", "DesignType", "IconDescription", "Model", "ModifiedByUserId", "ModifiedOn", "Quantity", "Shape", "Size", "Urls", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+2024-06-24 11:06:29.270 +03:00 [INF] Executed action method MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 17211.2231ms.
+2024-06-24 11:06:29.270 +03:00 [INF] Executing OkObjectResult, writing value of type 'MextFullstackSaaS.Application.Common.Models.ResponseDto`1[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-24 11:06:29.299 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi) in 17240.9596ms
+2024-06-24 11:06:29.300 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:06:29.302 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Orders - 200 null application/json; charset=utf-8 17246.1998ms
+2024-06-24 11:07:21.672 +03:00 [INF] Application is shutting down...
+2024-06-24 11:18:06.714 +03:00 [INF] Starting web application
+2024-06-24 11:18:07.487 +03:00 [INF] User profile is available. Using '/Users/altudev/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2024-06-24 11:18:08.046 +03:00 [INF] Now listening on: https://localhost:7281
+2024-06-24 11:18:08.046 +03:00 [INF] Now listening on: http://localhost:5121
+2024-06-24 11:18:08.047 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-24 11:18:08.048 +03:00 [INF] Hosting environment: Development
+2024-06-24 11:18:08.048 +03:00 [INF] Content root path: /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.WebApi
+2024-06-24 11:18:08.794 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/index.html - null null
+2024-06-24 11:18:08.933 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/index.html - 200 null text/html;charset=utf-8 143.3716ms
+2024-06-24 11:18:09.092 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - null null
+2024-06-24 11:18:09.255 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 162.9921ms
+2024-06-24 11:18:29.537 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/UsersAuth/login - application/json 73
+2024-06-24 11:18:29.543 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:18:29.589 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:18:29.617 +03:00 [INF] Route matched with {action = "Login", controller = "UsersAuth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] LoginAsync(MextFullstackSaaS.Application.Features.UserAuth.Commands.Login.UserAuthLoginCommand, System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.UsersAuthController (MextFullstackSaaS.WebApi).
+2024-06-24 11:18:29.649 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 11:18:32.746 +03:00 [INF] Executed DbCommand (116ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."AccessFailedCount", u."ConcurrencyStamp", u."CreatedByUserId", u."CreatedOn", u."Email", u."EmailConfirmed", u."FirstName", u."LastName", u."LockoutEnabled", u."LockoutEnd", u."ModifiedByUserId", u."ModifiedOn", u."NormalizedEmail", u."NormalizedUserName", u."PasswordHash", u."PhoneNumber", u."PhoneNumberConfirmed", u."SecurityStamp", u."TwoFactorEnabled", u."UserName"
+FROM "Users" AS u
+WHERE u."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2024-06-24 11:18:33.051 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u
+    WHERE u."Email" = @__email_0 AND u."EmailConfirmed")
+2024-06-24 11:18:33.072 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."AccessFailedCount", u."ConcurrencyStamp", u."CreatedByUserId", u."CreatedOn", u."Email", u."EmailConfirmed", u."FirstName", u."LastName", u."LockoutEnabled", u."LockoutEnd", u."ModifiedByUserId", u."ModifiedOn", u."NormalizedEmail", u."NormalizedUserName", u."PasswordHash", u."PhoneNumber", u."PhoneNumberConfirmed", u."SecurityStamp", u."TwoFactorEnabled", u."UserName"
+FROM "Users" AS u
+WHERE u."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2024-06-24 11:18:33.134 +03:00 [INF] Executed action method MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 3475.8544ms.
+2024-06-24 11:18:33.154 +03:00 [INF] Executing OkObjectResult, writing value of type 'MextFullstackSaaS.Application.Common.Models.ResponseDto`1[[MextFullstackSaaS.Application.Common.Models.JwtDto, MextFullstackSaaS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-24 11:18:33.196 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi) in 3569.1261ms
+2024-06-24 11:18:33.197 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:18:33.224 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/UsersAuth/login - 200 null application/json; charset=utf-8 3687.5291ms
+2024-06-24 11:18:49.797 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Orders - null null
+2024-06-24 11:18:49.859 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:18:49.864 +03:00 [INF] Route matched with {action = "GetAll", controller = "Orders"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync(System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.OrdersController (MextFullstackSaaS.WebApi).
+2024-06-24 11:18:49.865 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 11:18:49.954 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@___currentUserService_UserId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."ColourCode", o."CreatedByUserId", o."CreatedOn", o."Description", o."DesignType", o."IconDescription", o."Model", o."ModifiedByUserId", o."ModifiedOn", o."Quantity", o."Shape", o."Size", o."Urls", o."UserId"
+FROM "Orders" AS o
+WHERE o."UserId" = @___currentUserService_UserId_0
+2024-06-24 11:18:49.996 +03:00 [INF] Executed action method MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 130.7346ms.
+2024-06-24 11:18:49.996 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MextFullstackSaaS.Application.Features.Orders.Queries.GetAll.OrderGetAllDto, MextFullstackSaaS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-24 11:18:50.049 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi) in 184.9441ms
+2024-06-24 11:18:50.049 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:18:50.050 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Orders - 200 null application/json; charset=utf-8 253.0424ms
+2024-06-24 11:29:56.296 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Orders - null null
+2024-06-24 11:29:56.296 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:29:56.298 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Orders - 204 null null 2.9616ms
+2024-06-24 11:29:56.300 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Orders - application/json; charset=utf-8 124
+2024-06-24 11:29:56.301 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:29:56.315 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '24/06/2024 08:28:18', Current time (UTC): '24/06/2024 08:29:56'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2024-06-24 11:29:56.350 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '24/06/2024 08:28:18', Current time (UTC): '24/06/2024 08:29:56'.
+2024-06-24 11:29:56.358 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-06-24 11:29:56.374 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-06-24 11:29:56.374 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Orders - 401 0 null 74.4426ms
+2024-06-24 11:30:26.215 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/UsersAuth/login - null null
+2024-06-24 11:30:26.216 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:30:26.216 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/UsersAuth/login - 204 null null 1.707ms
+2024-06-24 11:30:26.217 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/UsersAuth/login - application/json; charset=utf-8 64
+2024-06-24 11:30:26.249 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:30:26.249 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:30:26.250 +03:00 [INF] Route matched with {action = "Login", controller = "UsersAuth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] LoginAsync(MextFullstackSaaS.Application.Features.UserAuth.Commands.Login.UserAuthLoginCommand, System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.UsersAuthController (MextFullstackSaaS.WebApi).
+2024-06-24 11:30:26.251 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 11:30:26.278 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."AccessFailedCount", u."ConcurrencyStamp", u."CreatedByUserId", u."CreatedOn", u."Email", u."EmailConfirmed", u."FirstName", u."LastName", u."LockoutEnabled", u."LockoutEnd", u."ModifiedByUserId", u."ModifiedOn", u."NormalizedEmail", u."NormalizedUserName", u."PasswordHash", u."PhoneNumber", u."PhoneNumberConfirmed", u."SecurityStamp", u."TwoFactorEnabled", u."UserName"
+FROM "Users" AS u
+WHERE u."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2024-06-24 11:30:26.358 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u
+    WHERE u."Email" = @__email_0 AND u."EmailConfirmed")
+2024-06-24 11:30:26.361 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."AccessFailedCount", u."ConcurrencyStamp", u."CreatedByUserId", u."CreatedOn", u."Email", u."EmailConfirmed", u."FirstName", u."LastName", u."LockoutEnabled", u."LockoutEnd", u."ModifiedByUserId", u."ModifiedOn", u."NormalizedEmail", u."NormalizedUserName", u."PasswordHash", u."PhoneNumber", u."PhoneNumberConfirmed", u."SecurityStamp", u."TwoFactorEnabled", u."UserName"
+FROM "Users" AS u
+WHERE u."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2024-06-24 11:30:26.362 +03:00 [INF] Executed action method MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 110.1246ms.
+2024-06-24 11:30:26.399 +03:00 [INF] Executing OkObjectResult, writing value of type 'MextFullstackSaaS.Application.Common.Models.ResponseDto`1[[MextFullstackSaaS.Application.Common.Models.JwtDto, MextFullstackSaaS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-24 11:30:26.399 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi) in 149.1675ms
+2024-06-24 11:30:26.399 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.UsersAuthController.LoginAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:30:26.400 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/UsersAuth/login - 200 null application/json; charset=utf-8 182.3497ms
+2024-06-24 11:30:54.316 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Orders - null null
+2024-06-24 11:30:54.317 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:30:54.317 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Orders - 204 null null 0.7217ms
+2024-06-24 11:30:54.321 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Orders - application/json; charset=utf-8 124
+2024-06-24 11:30:54.350 +03:00 [INF] CORS policy execution successful.
+2024-06-24 11:30:54.363 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:30:54.368 +03:00 [INF] Route matched with {action = "Add", controller = "Orders"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddAsync(MextFullstackSaaS.Application.Features.Orders.Commands.Add.OrderAddCommand, System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.OrdersController (MextFullstackSaaS.WebApi).
+2024-06-24 11:30:54.390 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 11:30:54.650 +03:00 [INF] Start processing HTTP request POST https://api.openai.com/v1/images/generations
+2024-06-24 11:30:54.654 +03:00 [INF] Sending HTTP request POST https://api.openai.com/v1/images/generations
+2024-06-24 11:31:08.492 +03:00 [INF] Received HTTP response headers after 13834.8911ms - 200
+2024-06-24 11:31:08.493 +03:00 [INF] End processing HTTP request after 13844.8895ms - 200
+2024-06-24 11:31:08.704 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Int32), @p6='?', @p7='?' (DbType = Int32), @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = Int32), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?', @p14='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Orders" ("Id", "ColourCode", "CreatedByUserId", "CreatedOn", "Description", "DesignType", "IconDescription", "Model", "ModifiedByUserId", "ModifiedOn", "Quantity", "Shape", "Size", "Urls", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+2024-06-24 11:31:08.725 +03:00 [INF] Executed action method MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 14326.6645ms.
+2024-06-24 11:31:08.725 +03:00 [INF] Executing OkObjectResult, writing value of type 'MextFullstackSaaS.Application.Common.Models.ResponseDto`1[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-24 11:31:08.728 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi) in 14360.2574ms
+2024-06-24 11:31:08.748 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.AddAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:31:08.749 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Orders - 200 null application/json; charset=utf-8 14428.4556ms
+2024-06-24 11:32:08.998 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Orders/e83470f4-10fc-4ea1-b6aa-b9b1fcfe7ca7 - null null
+2024-06-24 11:32:08.999 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:32:09.004 +03:00 [INF] Route matched with {action = "GetById", controller = "Orders"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByIdAsync(System.Guid, System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.OrdersController (MextFullstackSaaS.WebApi).
+2024-06-24 11:32:09.005 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 11:32:09.030 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Orders" AS o
+    WHERE o."Id" = @__id_0)
+2024-06-24 11:32:09.050 +03:00 [ERR] The LINQ expression 'DbSet<Order>()
+    .Where(o => OrderGetByIdDto.MapFromOrder(o).Id == __request_Id_0)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+System.InvalidOperationException: The LINQ expression 'DbSet<Order>()
+    .Where(o => OrderGetByIdDto.MapFromOrder(o).Id == __request_Id_0)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass12_0`1.<ExecuteAsync>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at MextFullstackSaaS.Application.Features.Orders.Queries.GetById.OrderGetByIdQueryHandler.Handle(OrderGetByIdQuery request, CancellationToken cancellationToken) in /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.Application/Features/Orders/Queries/GetById/OrderGetByIdQueryHandler.cs:line 28
+   at MextFullstackSaaS.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.Application/Common/Behaviours/ValidationBehaviour.cs:line 34
+   at MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync(Guid id, CancellationToken cancellationToken) in /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.WebApi/Controllers/OrdersController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2024-06-24 11:32:09.058 +03:00 [INF] Executing ObjectResult, writing value of type 'MextFullstackSaaS.Application.Common.Models.ResponseDto`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-24 11:32:09.059 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync (MextFullstackSaaS.WebApi) in 55.0012ms
+2024-06-24 11:32:09.059 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:32:09.060 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Orders/e83470f4-10fc-4ea1-b6aa-b9b1fcfe7ca7 - 500 null application/json; charset=utf-8 61.6624ms
+2024-06-24 11:32:18.882 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Orders/e83470f4-10fc-4ea1-b6aa-b9b1fcfe7ca7 - null null
+2024-06-24 11:32:18.886 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:32:18.886 +03:00 [INF] Route matched with {action = "GetById", controller = "Orders"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByIdAsync(System.Guid, System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.OrdersController (MextFullstackSaaS.WebApi).
+2024-06-24 11:32:18.887 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 11:32:18.892 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Orders" AS o
+    WHERE o."Id" = @__id_0)
+2024-06-24 11:32:18.896 +03:00 [ERR] The LINQ expression 'DbSet<Order>()
+    .Where(o => OrderGetByIdDto.MapFromOrder(o).Id == __request_Id_0)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+System.InvalidOperationException: The LINQ expression 'DbSet<Order>()
+    .Where(o => OrderGetByIdDto.MapFromOrder(o).Id == __request_Id_0)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass12_0`1.<ExecuteAsync>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at MextFullstackSaaS.Application.Features.Orders.Queries.GetById.OrderGetByIdQueryHandler.Handle(OrderGetByIdQuery request, CancellationToken cancellationToken) in /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.Application/Features/Orders/Queries/GetById/OrderGetByIdQueryHandler.cs:line 28
+   at MextFullstackSaaS.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.Application/Common/Behaviours/ValidationBehaviour.cs:line 34
+   at MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync(Guid id, CancellationToken cancellationToken) in /Users/altudev/Documents/NetRepos/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.WebApi/Controllers/OrdersController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2024-06-24 11:32:18.898 +03:00 [INF] Executing ObjectResult, writing value of type 'MextFullstackSaaS.Application.Common.Models.ResponseDto`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-24 11:32:18.899 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync (MextFullstackSaaS.WebApi) in 13.0093ms
+2024-06-24 11:32:18.899 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.GetByIdAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:32:18.900 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Orders/e83470f4-10fc-4ea1-b6aa-b9b1fcfe7ca7 - 500 null application/json; charset=utf-8 18.5492ms
+2024-06-24 11:32:30.225 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Orders - null null
+2024-06-24 11:32:30.226 +03:00 [INF] Executing endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:32:30.231 +03:00 [INF] Route matched with {action = "GetAll", controller = "Orders"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync(System.Threading.CancellationToken) on controller MextFullstackSaaS.WebApi.Controllers.OrdersController (MextFullstackSaaS.WebApi).
+2024-06-24 11:32:30.232 +03:00 [INF] Executing action method MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi) - Validation state: "Valid"
+2024-06-24 11:32:30.234 +03:00 [INF] Executed action method MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.9157ms.
+2024-06-24 11:32:30.234 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MextFullstackSaaS.Application.Features.Orders.Queries.GetAll.OrderGetAllDto, MextFullstackSaaS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-24 11:32:30.235 +03:00 [INF] Executed action MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi) in 3.1234ms
+2024-06-24 11:32:30.235 +03:00 [INF] Executed endpoint 'MextFullstackSaaS.WebApi.Controllers.OrdersController.GetAllAsync (MextFullstackSaaS.WebApi)'
+2024-06-24 11:32:30.235 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Orders - 200 null application/json; charset=utf-8 10.1828ms
+2024-06-24 11:57:01.207 +03:00 [INF] Application is shutting down...

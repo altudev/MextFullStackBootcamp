@@ -25,13 +25,15 @@ namespace MextFullstackSaaS.Application.Features.Orders.Queries.GetById
             if (_memoryCache.TryGetValue(MemoryCacheHelper.GetOrderGetByIdKey(request.Id), out order))
                 return order;
 
-            order = await _dbContext
+            var normalOrder = await _dbContext
                 .Orders
                 .AsNoTracking()
-                .Select(x => OrderGetByIdDto.MapFromOrder(x))
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-            _memoryCache.Set(MemoryCacheHelper.GetOrderGetByIdKey(request.Id), order, MemoryCacheHelper.GetMemoryCacheEntryOptions());
+            order = OrderGetByIdDto.MapFromOrder(normalOrder);
+
+            _memoryCache.Set(MemoryCacheHelper.GetOrderGetByIdKey(request.Id), order,
+                MemoryCacheHelper.GetMemoryCacheEntryOptions());
 
             return order;
         }

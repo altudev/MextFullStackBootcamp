@@ -1,0 +1,51 @@
+@page "/show-icon/{OrderId:guid}"
+@using MextFullstackSaaS.Application.Features.Orders.Queries.GetById
+@inject HttpClient HttpClient
+
+@if (order is null)
+{
+    <Loading/>
+}
+else
+{
+    <div class="hero bg-base-200 min-h-screen">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-3xl font-bold">Your Generated Icons</h1>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-title flex justify-center items-center mt-2">
+                        <h2 class="text-lg font-bold">@order.IconDescription</h2>
+                    </div>
+                    <div class="card-body flex justify-center items-center">
+                        <img class="w-[25rem]"
+                             src="@order.Urls[0]"
+                             alt="@order.IconDescription"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public Guid OrderId { get; set; }
+
+    private OrderGetByIdDto order = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            order = await HttpClient.GetFromJsonAsync<OrderGetByIdDto>($"Orders/{OrderId}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
+        await base.OnInitializedAsync();
+    }
+
+}
