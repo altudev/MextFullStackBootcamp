@@ -1,8 +1,42 @@
 ﻿@page "/community"
+@using Microsoft.AspNetCore.SignalR.Client
 
 
 <h3>CommunityPage</h3>
 
+@if (urls is null)
+{
+    <Loading />
+}else if (urls is not null && !urls.Any())
+{
+    <h4>There are no icons to show.</h4>
+}
+else
+{
+    foreach (var url in urls)
+    {
+        <p class="text-indigo-500 block">@url</p>
+    }
+}
+
 @code {
+    private List<string> urls = null;
+    private HubConnection? hubConnection;
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl("https://localhost:7281/hubs/orderHub")
+            .WithAutomaticReconnect()
+            .Build();
+
+        await hubConnection.StartAsync();
+        
+        urls = await hubConnection.InvokeAsync<List<string>>("GetAllCommunityAsync");
+        
+        await base.OnInitializedAsync();
+    }
+    
+    
 
 }

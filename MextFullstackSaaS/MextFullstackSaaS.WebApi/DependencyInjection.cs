@@ -13,6 +13,9 @@ namespace MextFullstackSaaS.WebApi
     {
         public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
         {
+            // SignalR
+            services.AddSignalR();
+            
             services.AddMemoryCache();
 
             services.AddCors(options =>
