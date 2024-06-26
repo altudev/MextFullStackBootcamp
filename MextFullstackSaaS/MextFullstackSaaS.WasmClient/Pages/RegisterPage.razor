@@ -1,4 +1,5 @@
 ﻿@page "/register"
+@layout AuthLayout
 @using MextFullstackSaaS.Application.Common.Models
 @using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register
 @using MextFullstackSaaS.WasmClient.Services
@@ -130,7 +131,7 @@ else
 
                                 </div>
                                 <div class="text-center">
-                                    <p class="text-base text-gray-600">Already have an account? <a class="font-medium text-indigo-500 transition-all duration-200 hover:text-indigo-600 hover:underline">Log in</a></p>
+                                    <p class="text-base text-gray-600 cursor-pointer" @onclick="@(()=>NavigationManager.NavigateTo("/login"))">Already have an account? <a class="font-medium text-indigo-500 transition-all duration-200 hover:text-indigo-600 hover:underline">Log in</a></p>
                                 </div>
                             </div>
                         </div>

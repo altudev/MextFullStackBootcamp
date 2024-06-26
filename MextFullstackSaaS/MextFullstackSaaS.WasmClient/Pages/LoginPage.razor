@@ -1,4 +1,5 @@
 ﻿@page "/login"
+@layout AuthLayout
 @using System.Net
 @using Blazored.LocalStorage
 @using MextFullstackSaaS.Application.Common.Models
@@ -192,6 +193,6 @@
     // Handle create account link click
     private async Task HandleCreateAccount()
     {
-        // Implement create account logic here
+        NavigationManager.NavigateTo("/register");
     }
 }
