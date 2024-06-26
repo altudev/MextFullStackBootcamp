@@ -12,11 +12,8 @@ public class OrderHub:Hub
     {
         _mediatr = mediatr;
     }
-
-    public async Task NewOrderAddedAsync()
-    {
-        
-    }
+    
+    
 
     public Task<List<string>> GetAllCommunityAsync()
     {

@@ -1,9 +1,6 @@
 ﻿@page "/community"
 @using Microsoft.AspNetCore.SignalR.Client
 
-
-<h3>CommunityPage</h3>
-
 @if (urls is null)
 {
     <Loading />
@@ -13,10 +10,21 @@
 }
 else
 {
-    foreach (var url in urls)
-    {
-        <p class="text-indigo-500 block">@url</p>
-    }
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-4">Community Images</h1>
+        <div class="flex flex-wrap gap-3 mt-7 justify-center">
+            @foreach (var imageUrl in urls)
+            {
+                <div>
+                    <div class="bg-base-100 shadow-xl">
+                        <figure class="h-32 w-32 overflow-hidden shadow-xl">
+                            <img src="@imageUrl" alt="Community Image" class="w-full h-full object-cover rounded-lg" />
+                        </figure>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 }
 
 @code {
@@ -29,6 +37,15 @@ else
             .WithUrl("https://localhost:7281/hubs/orderHub")
             .WithAutomaticReconnect()
             .Build();
+
+        hubConnection.On<List<string>>("NewOrderAdded", (newUrls) =>
+        {
+            // urls = new List<string>(urls,newUrls);
+            
+            urls.AddRange(newUrls);
+            
+            InvokeAsync(StateHasChanged);
+        });
 
         await hubConnection.StartAsync();
         

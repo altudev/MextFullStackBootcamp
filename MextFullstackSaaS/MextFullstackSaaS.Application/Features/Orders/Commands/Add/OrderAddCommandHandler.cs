@@ -14,13 +14,15 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
         private readonly ICurrentUserService _currentUserService;
         private readonly IOpenAIService _openAiService;
         private readonly IMemoryCache _memoryCache;
+        private readonly IOrderHubService _orderHubService;
 
-        public OrderAddCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUserService, IOpenAIService openAiService, IMemoryCache memoryCache)
+        public OrderAddCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUserService, IOpenAIService openAiService, IMemoryCache memoryCache, IOrderHubService orderHubService)
         {
             _dbContext = dbContext;
             _currentUserService = currentUserService;
             _openAiService = openAiService;
             _memoryCache = memoryCache;
+            _orderHubService = orderHubService;
         }
 
         public async Task<ResponseDto<Guid>> Handle(OrderAddCommand request, CancellationToken cancellationToken)
@@ -43,6 +45,8 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
 
                 _memoryCache.Set(MemoryCacheHelper.GetOrdersGetAllKey(_currentUserService.UserId),orders,MemoryCacheHelper.GetMemoryCacheEntryOptions());
             }
+
+            await _orderHubService.NewOrderAddedAsync(order.Urls,cancellationToken);
 
             return new ResponseDto<Guid>(order.Id,"Your order completed successfully.");
         }

@@ -106,6 +106,7 @@ namespace MextFullstackSaaS.WebApi
             services.AddHttpContextAccessor();
 
             services.AddScoped<ICurrentUserService, CurrentUserManager>();
+            services.AddScoped<IOrderHubService, OrderHubManager>();
             
             // Install Microsoft.AspNetCore.Authentication.JwtBearer nuget
             services.AddAuthentication(options =>
