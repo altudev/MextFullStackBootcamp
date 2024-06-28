@@ -27,7 +27,13 @@
             <li class="my-4">Experiment with adding words, such as happy or vibrant</li>
         </ol>
     </div>
-    <EditForm Model="@command" class="w-full md:w-[700px] flex flex-col  gap-6">
+    @if (isLoading)
+    {
+        <Loading/>
+    }
+    else
+    {
+        <EditForm Model="@command" class="w-full md:w-[700px] flex flex-col  gap-6">
         <DataAnnotationsValidator/>
         <ValidationSummary class="mb-1 text-red-500"/>
         @* Icon Description *@
@@ -265,6 +271,7 @@
 
 
     </EditForm>
+    }
     @if (!string.IsNullOrEmpty(generatedIconUrl))
     {
         <div class="mt-8">
@@ -288,7 +295,15 @@
         var authState = await authenticationStateTask;
         IsAuthenticated = authState.User.Identity.IsAuthenticated;
     }
+    private bool isDallE3ModelSelected = false;
+    
+    private void HandleModelSelection(AIModelType modelType)
+    {
+        isDallE3ModelSelected = modelType == AIModelType.DallE3;
 
+        command.Model = modelType;
+    }
+    
     private void NavigateToLogin()
     {
         NavigationManager.NavigateTo("/login");

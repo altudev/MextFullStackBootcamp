@@ -62,8 +62,11 @@ namespace MextFullstackSaaS.Infrastructure.Services
                 
                 var result = await _userManager.CreateAsync(user);
                 
-                
+                if (!result.Succeeded)
+                    throw new Exception("User registration failed");
             }
+            
+            return await _jwtService.GenerateTokenAsync(user.Id,user.Email,cancellationToken);
         }
 
         public async Task<bool> IsEmailExistsAsync(string email, CancellationToken cancellationToken)

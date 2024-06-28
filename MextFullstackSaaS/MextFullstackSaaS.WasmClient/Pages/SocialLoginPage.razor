@@ -1,18 +1,41 @@
 @page "/social-login"
-<h3 class="my-auto">Email:@Email</h3>
-<h3 class="my-auto">First Name:@FirstName</h3>
-<h3 class="my-auto">Last Name:@LastName</h3>
+@layout AuthLayout
+@using Blazored.LocalStorage
+@using MextFullstackSaaS.Application.Common.Models
+@using MextFullstackSaaS.WasmClient.Services
+@inject IToasterService ToasterService
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+
+<Loading />
 
 @code {
-    [SupplyParameterFromQuery]
+    [SupplyParameterFromQuery(Name = "access_token")]
     [Parameter] 
-    public string Email { get; set; }
+    public string AccessToken { get; set; }
     
-    [SupplyParameterFromQuery]
+    [SupplyParameterFromQuery(Name = "expiry_date")]
     [Parameter] 
-    public string FirstName { get; set; }
-    
-    [SupplyParameterFromQuery]
-    [Parameter] 
-    public string LastName { get; set; }
+    public long ExpiryDate { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var jwtDto = new JwtDto
+        {
+            Token = AccessToken,
+            Expires = DateTime.FromBinary(ExpiryDate)
+        };
+
+        await LocalStorage.SetItemAsync<JwtDto>("cto", jwtDto);
+
+        await AuthStateProvider.GetAuthenticationStateAsync();
+
+        ToasterService.ShowSuccess("Welcome! You have successfully logged in.");
+
+        NavigationManager.NavigateTo("/");
+        
+        await base.OnInitializedAsync();
+    }
+
 }
