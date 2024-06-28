@@ -4,7 +4,9 @@ using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Application.Common.Models.Auth;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Login;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
+using MextFullstackSaaS.Application.Features.UserAuth.Commands.SocialLogin;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
+using MextFullstackSaaS.Domain.Entities;
 using MextFullstackSaaS.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +48,22 @@ namespace MextFullstackSaaS.Infrastructure.Services
           var jwtDto = await _jwtService.GenerateTokenAsync(user.Id,user.Email,cancellationToken);
 
           return jwtDto;
+        }
+
+        public async Task<JwtDto> SocialLoginAsync(UserAuthSocialLoginCommand command, CancellationToken cancellationToken)
+        {
+            User? user;
+
+            user = await _userManager.FindByEmailAsync(command.Email);
+
+            if (user is null)
+            {
+                user = UserAuthSocialLoginCommand.ToUser(command);
+                
+                var result = await _userManager.CreateAsync(user);
+                
+                
+            }
         }
 
         public async Task<bool> IsEmailExistsAsync(string email, CancellationToken cancellationToken)
