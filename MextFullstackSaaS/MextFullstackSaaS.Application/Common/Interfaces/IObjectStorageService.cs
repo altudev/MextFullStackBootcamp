@@ -2,7 +2,8 @@
 {
     public interface IObjectStorageService
     {
-        Task<string> UploadImageAsync(byte[] imageData, CancellationToken cancellationToken);
+        Task<string> UploadImageAsync(string imageData, CancellationToken cancellationToken);
+        Task<List<string>> UploadImagesAsync(List<string> imagesData, CancellationToken cancellationToken);
         
     }
 }

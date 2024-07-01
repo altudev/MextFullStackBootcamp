@@ -15,25 +15,27 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
         private readonly IOpenAIService _openAiService;
         private readonly IMemoryCache _memoryCache;
         private readonly IOrderHubService _orderHubService;
+        private readonly IObjectStorageService _objectStorageService;
 
-        public OrderAddCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUserService, IOpenAIService openAiService, IMemoryCache memoryCache, IOrderHubService orderHubService)
+        public OrderAddCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUserService, IOpenAIService openAiService, IMemoryCache memoryCache, IOrderHubService orderHubService, IObjectStorageService objectStorageService)
         {
             _dbContext = dbContext;
             _currentUserService = currentUserService;
             _openAiService = openAiService;
             _memoryCache = memoryCache;
             _orderHubService = orderHubService;
+            _objectStorageService = objectStorageService;
         }
 
         public async Task<ResponseDto<Guid>> Handle(OrderAddCommand request, CancellationToken cancellationToken)
         {
            var order = OrderAddCommand.MapToOrder(request,_currentUserService.UserId);
 
-           order.Urls =
+           var base64Images =
                await _openAiService.DallECreateIconAsync(DallECreateIconRequestDto.MapFromOrderAddCommand(request),
                    cancellationToken);
 
-            /* TODO: Make Request to the Gemine or Dall-e 3 */
+            order.Urls = await _objectStorageService.UploadImagesAsync(base64Images, cancellationToken);
 
             _dbContext.Orders.Add(order);
 
