@@ -1,6 +1,8 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
 using MextFullstackSaaS.Application.Common.Interfaces;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Net;
 
 namespace MextFullstackSaaS.Infrastructure.Services
 {
@@ -50,6 +52,39 @@ namespace MextFullstackSaaS.Infrastructure.Services
             var results = await Task.WhenAll(uploadTasks);
 
             return results.ToList();
+        }
+
+        public async Task<bool> RemoveAsync(string key, CancellationToken cancellationToken)
+        {
+            try
+            {
+                // Create a new Google Cloud Storage client
+                using var storage = await StorageClient.CreateAsync(_credential);
+
+                // Delete the file from Google Cloud Storage
+                await storage.DeleteObjectAsync(BucketName, key, cancellationToken: cancellationToken);
+
+                return true;
+            }
+            catch (Google.GoogleApiException e) when (e.HttpStatusCode == HttpStatusCode.NotFound)
+            {
+                // Object doesn't exist, which could be considered a successful deletion
+                return true;
+            }
+            catch (Exception)
+            {
+                // Handle or log other exceptions as needed
+                return false;
+            }
+        }
+
+        public async Task<bool> RemoveAsync(List<string> keys, CancellationToken cancellationToken)
+        {
+           var removeTasks = keys.Select(key => RemoveAsync(key, cancellationToken));
+
+           await Task.WhenAll(removeTasks);
+
+           return true;
         }
     }
 }
