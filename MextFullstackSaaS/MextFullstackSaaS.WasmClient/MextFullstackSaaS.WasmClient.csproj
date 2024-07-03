@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Content Remove="Layout\NavBar.razor" />
-    <Content Include="wwwroot\images\.DS_Store" />
     <Content Include="wwwroot\images\DesignType\.DS_Store" />
   </ItemGroup>
 

@@ -6,6 +6,7 @@ using MextFullstackSaaS.Application.Features.UserAuth.Commands.Login;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.SocialLogin;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
+using MextFullstackSaaS.Application.Features.Users.Queries.GetProfile;
 using MextFullstackSaaS.Domain.Entities;
 using MextFullstackSaaS.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -17,11 +18,15 @@ namespace MextFullstackSaaS.Infrastructure.Services
     {
         private readonly IJwtService _jwtService;
         private readonly UserManager<User> _userManager;
+        private readonly ICurrentUserService _currentUserService;
+        private readonly IApplicationDbContext _applicationDbContext;
 
-        public IdentityManager(UserManager<User> userManager, IJwtService jwtService)
+        public IdentityManager(UserManager<User> userManager, IJwtService jwtService, ICurrentUserService currentUserService, IApplicationDbContext applicationDbContext)
         {
             _userManager = userManager;
             _jwtService = jwtService;
+            _currentUserService = currentUserService;
+            _applicationDbContext = applicationDbContext;
         }
         
         public async Task<UserAuthRegisterResponseDto> RegisterAsync(UserAuthRegisterCommand command, CancellationToken cancellationToken)
@@ -105,6 +110,19 @@ namespace MextFullstackSaaS.Infrastructure.Services
         public Task<bool> CheckIfEmailVerifiedAsync(string email, CancellationToken cancellationToken)
         {
             return _userManager.Users.AnyAsync(x => x.Email == email && x.EmailConfirmed, cancellationToken);
+        }
+
+        public async Task<UserGetProfileDto> GetProfileAsync(CancellationToken cancellationToken)
+        {
+            var user = await _userManager
+                .FindByIdAsync(_currentUserService.UserId.ToString());
+
+            user.Balance = await _applicationDbContext
+                .UserBalances
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.UserId == user.Id, cancellationToken);
+
+            return UserGetProfileDto.Map(user);
         }
     }
 }

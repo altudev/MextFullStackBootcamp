@@ -1,0 +1,93 @@
+﻿@page "/profile"
+@layout MainLayout
+@using MextFullstackSaaS.Application
+@using MextFullstackSaaS.Application.Features.UserProfile.Queries
+@using MextFullstackSaaS.Application.Common.Models
+@using Microsoft.AspNetCore.Components.Authorization
+@inject HttpClient HttpClient
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavigationManager
+
+<div class="flex items-center justify-center">
+    <AuthorizeView>
+        <Authorized>
+            @if (userProfile == null)
+            {
+                <p>Loading...</p>
+            }
+            else
+            {
+                <div class="card w-96 bg-base-100 shadow-2xl">
+                    <div class="card-body">
+                        <div class="flex">
+                            <p class="card-title">Your Profile</p>
+                            <div class="avatar">
+                                <div class="w-24 rounded-full">
+                                    <img src="@GetProfileImageUrl()" />
+                                </div>
+                            </div>
+                        </div>
+                        <p>Username: @userProfile.UserName</p>
+                        <p>Name: @userProfile.FirstName</p>
+                        <p>Surname: @userProfile.LastName</p>
+                        <p>Email: @userProfile.Email</p>
+                        <p>Credits: @userProfile.Balance</p>
+                    </div>
+
+                    <div class="card-actions justify-center gap-8">
+                        <button class="btn btn-primary">Buy Credits</button>
+                        <button class="btn btn-primary">Edit Profile</button>
+                    </div>
+                </div>
+            }
+        </Authorized>
+        <NotAuthorized>
+            <p>You are not authorized to view this page.</p>
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
+
+@code {
+    private GetUserProfileDto userProfile;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        if (authState.User.Identity?.IsAuthenticated ?? false)
+        {
+            try
+            {
+                var response = await HttpClient.GetAsync("http://localhost:5121/api/UsersAuth/profile");
+
+                // Check if the response is successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize the JSON response into GetUserProfileDto
+                    userProfile = await response.Content.ReadFromJsonAsync<GetUserProfileDto>();
+                }
+                else
+                {
+                    // Handle unsuccessful response (e.g., unauthorized, not found)
+                    Console.WriteLine($"Error fetching user profile: {response.StatusCode}");
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error fetching user profile: {ex.Message}");
+                // Handle other request-related exceptions
+            }
+        }
+    }
+
+    private string GetProfileImageUrl()
+    {
+        // Check if userProfile.ImageUrl is empty or null
+        if (string.IsNullOrEmpty(userProfile?.ImageUrl))
+        {
+            // Use default image path from wwwroot
+            return "/images/profile.jpeg";
+        }
+
+        return userProfile.ImageUrl;
+    }
+}

@@ -6,44 +6,75 @@
 @inject ILocalStorageService LocalStorage
 @inject NavigationManager NavigationManager
 
-<div class="navbar bg-base-100 px-4">
-    <div class="navbar-start">
+<div class="navbar z-10 bg-base-100 px-4">
+    <div class="navbar-start gap-2">
         <div class="dropdown">
+            <!-- Dropdown toggle button for small screens -->
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                </svg>
             </div>
-            <ul tabindex="0" class="menu menu-sm dropdown-content z-[1] rounded-box mt-3 w-52 bg-base-100 p-2 shadow">
+            <div>
+                 <ul tabindex="0" class="menu menu-sm dropdown-content z-[1] rounded-box mt-3 w-52 bg-base-100 p-2 shadow">
                 <li>
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                    <span aria-hidden="true">
-                        <OiHomeIcon />
-                    </span> Home
+                        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                        <span aria-hidden="true">
+                            <OiHomeIcon />
+                        </span> Home
                     </NavLink>
                 </li>
                 <li>
                     <NavLink class="nav-link" href="generate">
-                    <span aria-hidden="true">
-                        <OiPikachuIcon />
-                    </span> Generate
+                        <span aria-hidden="true">
+                            <OiPikachuIcon />
+                        </span> Generate
                     </NavLink>
                 </li>
                 <li>
                     <NavLink class="nav-link" href="community">
-                    <span aria-hidden="true">
-                        <OiHeartIcon />
-                    </span> Community
+                        <span aria-hidden="true">
+                            <OiHeartIcon />
+                        </span> Community
                     </NavLink>
                 </li>
+                <!-- Profile and Logout in dropdown for small screens -->
+                <AuthorizeView>
+                    <Authorized>
+                        <li>
+                            <NavLink class="nav-link flex items-center gap-2" href="profile">
+                                <OiProfile />
+                                <div class="flex flex-col">
+                                    <div>Profile</div>
+                                </div>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <button class="btn btn-sm btn-outline btn-accent w-full text-left" @onclick="Logout">Logout</button>
+                        </li>
+                    </Authorized>
+                    <NotAuthorized>
+                        <li>
+                            <button class="btn btn-sm btn-outline btn-secondary w-full text-left"
+                                @onclick="@(() => NavigationManager.NavigateTo("/login"))">Login</button>
+                        </li>
+                    </NotAuthorized>
+                </AuthorizeView>
             </ul>
+            </div>
+           
         </div>
-        <NavLink class="btn btn-ghost text-xl" href="/">
-            IconBuilderAI
+
+        <NavLink class="flex cursor-pointer items-center justify-center text-xl font-bold" href="/">
+            <img src="/images/logo.png" alt="logo" class="h-16">
+            <p class="">IconBuilderAI</p>
         </NavLink>
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-2">
             <li class="mr-3">
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <NavLink class="nav-link" href="/">
                     <span aria-hidden="true">
                         <OiHomeIcon />
                     </span> Home
@@ -63,16 +94,24 @@
                     </span> Community
                 </NavLink>
             </li>
-
         </ul>
     </div>
-    <div class="navbar-end">
+    <div class="navbar-end hidden lg:flex">
         <AuthorizeView>
             <Authorized>
-                <button class="btn btn-primary" @onclick="Logout">Logout</button>
+                <div class="flex items-center justify-center gap-6">
+                    <NavLink class="nav-link flex items-center justify-center gap-2" href="profile">
+                        <OiProfile />
+                        <div class="flex flex-col">
+                            <div>Profile</div>
+                        </div>
+                    </NavLink>
+                    <button class="btn btn-outline btn-accent" @onclick="Logout">Logout</button>
+                </div>
             </Authorized>
             <NotAuthorized>
-                <button class="btn btn-secondary" @onclick="@(() => NavigationManager.NavigateTo("/login"))">Login</button>
+                <button class="btn btn-outline btn-secondary"
+                    @onclick="@(() => NavigationManager.NavigateTo("/login"))">Login</button>
             </NotAuthorized>
         </AuthorizeView>
     </div>
@@ -82,9 +121,7 @@
     private async Task Logout()
     {
         await LocalStorage.RemoveItemAsync("cto");
-
         await AuthStateProvider.GetAuthenticationStateAsync();
-
         ToasterService.ShowSuccess("You have been logged out.");
     }
 }
