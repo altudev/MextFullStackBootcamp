@@ -11,12 +11,21 @@ public class UserAuthSocialLoginCommand:IRequest<ResponseDto<JwtDto>>
     public string Email { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
+    public string? ProfileImage { get; set; }
 
     public UserAuthSocialLoginCommand(string email, string firstName, string lastName)
     {
         Email = email;
         FirstName = firstName;
         LastName = lastName;
+    }
+
+    public UserAuthSocialLoginCommand(string email, string firstName, string lastName, string? profileImage)
+    {
+        Email = email;
+        FirstName = firstName;
+        LastName = lastName;
+        ProfileImage = profileImage;
     }
 
     public UserAuthSocialLoginCommand()
@@ -38,6 +47,7 @@ public class UserAuthSocialLoginCommand:IRequest<ResponseDto<JwtDto>>
             CreatedOn = DateTimeOffset.UtcNow,
             CreatedByUserId = id.ToString(),
             EmailConfirmed = true,
+            ProfileImage = command.ProfileImage,
             Balance = new UserBalance()
             {
                 Id = Guid.NewGuid(),

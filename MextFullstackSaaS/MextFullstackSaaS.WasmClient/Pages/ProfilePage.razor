@@ -1,9 +1,6 @@
 ﻿@page "/profile"
+@using MextFullstackSaaS.Application.Features.Users.Queries.GetProfile
 @layout MainLayout
-@using MextFullstackSaaS.Application
-@using MextFullstackSaaS.Application.Features.UserProfile.Queries
-@using MextFullstackSaaS.Application.Common.Models
-@using Microsoft.AspNetCore.Components.Authorization
 @inject HttpClient HttpClient
 @inject AuthenticationStateProvider AuthStateProvider
 @inject NavigationManager NavigationManager
@@ -11,9 +8,9 @@
 <div class="flex items-center justify-center">
     <AuthorizeView>
         <Authorized>
-            @if (userProfile == null)
+            @if (userProfile is null)
             {
-                <p>Loading...</p>
+                <Loading/>
             }
             else
             {
@@ -31,12 +28,12 @@
                         <p>Name: @userProfile.FirstName</p>
                         <p>Surname: @userProfile.LastName</p>
                         <p>Email: @userProfile.Email</p>
-                        <p>Credits: @userProfile.Balance</p>
+                        <p>Credits: @userProfile.Credits</p>
                     </div>
 
-                    <div class="card-actions justify-center gap-8">
-                        <button class="btn btn-primary">Buy Credits</button>
-                        <button class="btn btn-primary">Edit Profile</button>
+                    <div class="card-actions mb-3 justify-center gap-8 pb-2">
+                        <button class="btn btn-warning">Buy Credits</button>
+                        <button class="btn btn-info">Edit Profile</button>
                     </div>
                 </div>
             }
@@ -48,22 +45,23 @@
 </div>
 
 @code {
-    private GetUserProfileDto userProfile;
+    private UserGetProfileDto userProfile;
 
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+
         if (authState.User.Identity?.IsAuthenticated ?? false)
         {
             try
             {
-                var response = await HttpClient.GetAsync("http://localhost:5121/api/UsersAuth/profile");
+                var response = await HttpClient.GetAsync("Users/profile");
 
                 // Check if the response is successful
                 if (response.IsSuccessStatusCode)
                 {
                     // Deserialize the JSON response into GetUserProfileDto
-                    userProfile = await response.Content.ReadFromJsonAsync<GetUserProfileDto>();
+                    userProfile = await response.Content.ReadFromJsonAsync<UserGetProfileDto>();
                 }
                 else
                 {
@@ -82,12 +80,12 @@
     private string GetProfileImageUrl()
     {
         // Check if userProfile.ImageUrl is empty or null
-        if (string.IsNullOrEmpty(userProfile?.ImageUrl))
+        if (string.IsNullOrEmpty(userProfile?.ProfileImage))
         {
             // Use default image path from wwwroot
             return "/images/profile.jpeg";
         }
 
-        return userProfile.ImageUrl;
+        return userProfile.ProfileImage;
     }
 }

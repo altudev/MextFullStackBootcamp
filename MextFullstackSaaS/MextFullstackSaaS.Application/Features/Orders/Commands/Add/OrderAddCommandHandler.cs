@@ -4,6 +4,9 @@ using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Application.Common.Models.OpenAI;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetAll;
+using MextFullstackSaaS.Domain.Entities;
+using MextFullstackSaaS.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
@@ -39,6 +42,8 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
 
             _dbContext.Orders.Add(order);
 
+            await DecreaseCreditsAsync(cancellationToken);
+
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             if (_memoryCache.TryGetValue(MemoryCacheHelper.GetOrdersGetAllKey(_currentUserService.UserId),out List<OrderGetAllDto> orders))
@@ -51,6 +56,35 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
             await _orderHubService.NewOrderAddedAsync(order.Urls,cancellationToken);
 
             return new ResponseDto<Guid>(order.Id,"Your order completed successfully.");
+        }
+
+        private async Task DecreaseCreditsAsync(CancellationToken cancellationToken)
+        {
+            var userBalance = await _dbContext.
+                UserBalances
+                .FirstOrDefaultAsync(x => x.UserId == _currentUserService.UserId, cancellationToken);
+
+            userBalance.Credits--;
+            userBalance.ModifiedByUserId = _currentUserService.UserId.ToString();
+            userBalance.ModifiedOn = DateTimeOffset.UtcNow;
+
+            var history = new UserBalanceHistory()
+            {
+                Id = Guid.NewGuid(),
+                UserBalanceId = userBalance.Id,
+                CreatedByUserId = _currentUserService.UserId.ToString(),
+                CreatedOn = DateTimeOffset.UtcNow,
+                Amount = 1,
+                PreviousCredits = userBalance.Credits + 1,
+                CurrentCredits = userBalance.Credits,
+                Type = UserBalanceHistoryType.DeductCredits
+            };
+
+            // userBalance.Histories.Add(history);
+
+            _dbContext.UserBalances.Update(userBalance);
+
+            _dbContext.UserBalanceHistories.Add(history);
         }
     }
 }

@@ -10,15 +10,15 @@
 @inject NavigationManager NavigationManager
 
 
-<div class="min-h-screen flex flex-col items-center p-4 text-gray-200">
-<div class="flex flex-col items-center w-full md:w-[700px] p-4 gap-6 ">
+<div class="flex min-h-screen flex-col items-center p-4 text-gray-200">
+<div class="flex w-full flex-col items-center gap-6 p-4 md:w-[700px]">
     <div class="text-center">
-        <h1 class="text-3xl font-bold mb-4">Let's generate your icon.</h1>
+        <h1 class="mb-4 text-3xl font-bold">Let's generate your icon.</h1>
         <p class="mb-4">
             Your results may vary. We are working on fine-tuning results for each style. Here are some
             tips to make better icons:
         </p>
-        <ol class="list-disc text-left m-4">
+        <ol class="m-4 list-disc text-left">
             <li class="my-4">
                 Do not ask for words or letters, AI does not generate characters and words correctly
             </li>
@@ -33,24 +33,24 @@
     }
     else
     {
-        <EditForm Model="@command" class="w-full md:w-[700px] flex flex-col  gap-6">
+        <EditForm Model="@command" class="flex w-full flex-col gap-6 md:w-[700px]">
         <DataAnnotationsValidator/>
         <ValidationSummary class="mb-1 text-red-500"/>
         @* Icon Description *@
-        <div class=" text-left  flex flex-col gap-4">
-            <label class="mb-2 block  text-lg" for="iconDescription">
+        <div class="flex flex-col gap-4 text-left">
+            <label class="mb-2 block text-lg" for="iconDescription">
                 1. Describe your icon using a noun and an adjective
             </label>
             <InputText class="w-full rounded-lg border border-blue-500 bg-gray-800 p-2 text-white" type="text"
                        id="iconDescription" placeholder="an angry chicken" @bind-Value="command.IconDescription"/>
         </div>
         @* Icon Color Selection *@
-        <div class=" w-full  flex flex-col gap-4">
-            <label class="mb-4 block text-lg  text-white" for="colorSelection">
+        <div class="flex w-full flex-col gap-4">
+            <label class="mb-4 block text-lg text-white" for="colorSelection">
                 2. Select a primary color for your icon
             </label>
-            <div class=" w-full">
-                <div class=" flex space-x-4 flex-wrap ">
+            <div class="w-full">
+                <div class="flex flex-wrap space-x-4">
                     <button @onclick="() => SelectColorOption(ColorOption.Predefined)"
                             class="border-b-2 pb-2 text-gray-200 hover:border-white"
                             style="opacity: @(selectedColorOption == ColorOption.Predefined ? 1 : 0.5)">
@@ -72,10 +72,10 @@
 
             @if (selectedColorOption == ColorOption.Predefined)
             {
-                <div class="flex flex-wrap gap-4 mb-4">
+                <div class="mb-4 flex flex-wrap gap-4">
                     @foreach (var color in PredefinedColors)
                     {
-                        <div class="h-12 w-12 cursor-pointer rounded-lg mb-2"
+                        <div class="mb-2 h-12 w-12 cursor-pointer rounded-lg"
                              style="background-color: @color; opacity: @(SelectedColor == color ? "1" : "0.5")"
                              @onclick="() => SelectColor(color)">
                         </div>
@@ -100,26 +100,26 @@
             }
             else if (selectedColorOption == ColorOption.Picker)
             {
-                <div class="flex items-center mb-4 ">
-                    <label class="mr-2 text-gray-400 rounded-full">Pick a color:</label>
+                <div class="mb-4 flex items-center">
+                    <label class="mr-2 rounded-full text-gray-400">Pick a color:</label>
 
-                    <input type="color" @bind="@command.ColourCode" class="h-10 w-10  "/>
+                    <input type="color" @bind="@command.ColourCode" class="h-10 w-10"/>
                 </div>
             }
         </div>
         @* AI Model Typle *@
-        <div class=" w-full  flex flex-col gap-6">
+        <div class="flex w-full flex-col gap-6">
             <label class="mb-2 block text-lg" for="modelType">
                 3. Model type
             </label>
             <div class="flex flex-row gap-16">
 
                 <!-- Model Selection DallE2 -->
-                <div class="flex flex-col items-center text-center gap-4 transition-transform duration-200 ease-in-out"
+                <div class="flex flex-col items-center gap-4 text-center transition-transform duration-200 ease-in-out"
                      style="transform: scale(@(command.Model == AIModelType.DallE2 ? 1.25 : 1));">
                     <img src="/images/ModelType/DallE2.png" alt="Model Type 1"
-                         class="cursor-pointer rounded-lg h-24 w-24"
-                         @onclick="() => command.Model = AIModelType.DallE2"/>
+                         class="h-24 w-24 cursor-pointer rounded-lg"
+                                 @onclick="() => HandleModelSelection(AIModelType.DallE2)" />
                     <div class="flex flex-col">
                         <span class="text-md mt-1">DallE 2</span>
                         <span class="text-md">(2 credits)</span>
@@ -127,11 +127,11 @@
                 </div>
 
                 <!-- Model Selection DallE3 -->
-                <div class="flex flex-col items-center text-center gap-4 transition-transform duration-200 ease-in-out"
+                <div class="flex flex-col items-center gap-4 text-center transition-transform duration-200 ease-in-out"
                      style="transform: scale(@(command.Model == AIModelType.DallE3 ? 1.25 : 1));">
                     <img src="/images/ModelType/DallE3.png" alt="Model Type 2"
-                         class="cursor-pointer rounded-lg h-24 w-24"
-                         @onclick="() => command.Model = AIModelType.DallE3"/>
+                         class="h-24 w-24 cursor-pointer rounded-lg"
+                                 @onclick="() => HandleModelSelection(AIModelType.DallE3)" />
                     <div class="flex flex-col">
                         <span class="text-md mt-1">DallE 3</span>
                         <span class="text-md">(2 credits)</span>
@@ -144,7 +144,7 @@
 
         </div>
         @* Icon Style *@
-        <div class="w-full text-left flex flex-col gap-4">
+        <div class="flex w-full flex-col gap-4 text-left">
             <label class="mb-2 block text-lg" for="modelType">
                 4. Select a style for your icon
             </label>
@@ -153,10 +153,10 @@
                 {
                     <div class="flex flex-col items-center justify-center gap-4">
                         <img src="@DesignTypeImagePaths[designType]" alt="@designType"
-                             class="cursor-pointer rounded-lg transition-transform duration-200 ease-in-out h-24 w-24" style="transform: scale(@(selectedDesignType == designType ? 1.25 : 1));
+                             class="h-24 w-24 cursor-pointer rounded-lg transition-transform duration-200 ease-in-out" style="transform: scale(@(selectedDesignType == designType ? 1.25 : 1));
                             opacity: @(selectedDesignType == designType ? 1 : 0.5);"
                              @onclick="() => SelectDesignType(designType)"/>
-                        <span class="text-sm mt-2">@designType.ToString()</span>
+                        <span class="mt-2 text-sm">@designType.ToString()</span>
                     </div>
                 }
 
@@ -164,44 +164,73 @@
 
         </div>
         @* IconSize *@
-        <div class="w-full text-left flex flex-col gap-4">
+        <div class="flex w-full flex-col gap-4 text-left">
             <label class="mb-2 block text-lg" for="modelType">
                 5. Select a size for your icon
             </label>
             <div class="flex flex-wrap gap-10">
-                @foreach (IconSize iconSize in Enum.GetValues(typeof(IconSize)))
+                @if (isDallE3ModelSelected)
                 {
-                    <div class="flex flex-col items-center text-center gap-4">
-                        <div class="cursor-pointer rounded-lg h-24 w-24 bg-gray-800 flex justify-center items-center text-white transition-transform duration-200 ease-in-out  "
-                             style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'
-                             @onclick="() => SelectIconSize(iconSize)">
-                            @if (iconSize == IconSize.Small)
+                           
+                                <div class="flex flex-col items-center gap-4 text-center">
+                                    <div class="flex h-24 w-24 cursor-pointer items-center justify-center rounded-lg bg-gray-800 text-white transition-transform duration-200 ease-in-out"
+                                     style='@($"transform: scale({(selectedIconSize == IconSize.Large ? 1.25 : 1)}); opacity: {(selectedIconSize == IconSize.Large ? 1 : 0.5)};")'
+                                     @onclick="() => SelectIconSize(IconSize.Large)">
+
+                                        <span class="mt-1 text-xs"
+                                              style='@($"transform: scale({(selectedIconSize == IconSize.Large ? 1.25 : 1)}); opacity: {(selectedIconSize == IconSize.Large ? 1 : 0.5)};")'>
+                                            Large (1024x1024)
+                                        </span>
+
+
+                                    </div>
+                                    <span class="text-md mt-1"
+                                      style='@($"transform: scale({(selectedIconSize == IconSize.Large ? 1.25 : 1)}); opacity: {(selectedIconSize == IconSize.Large ? 1 : 0.5)};")'>
+                                        @IconSize.Large
+                                    </span>
+                                </div>
+                            
+                }
+                else
+                {
+                            @foreach (IconSize iconSize in Enum.GetValues(typeof(IconSize)))
                             {
-                                <div class="text-xs mt-1  "
-                                     style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'>
-                                    Small (256x256)
+                                <div class="flex flex-col items-center gap-4 text-center">
+                                    <div class="flex h-24 w-24 cursor-pointer items-center justify-center rounded-lg bg-gray-800 text-white transition-transform duration-200 ease-in-out"
+                                         style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'
+                                         @onclick="() => SelectIconSize(iconSize)">
+
+                                        
+                                            @if (iconSize == IconSize.Small)
+                                            {
+                                                <div class="mt-1 text-xs"
+                                                     style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'>
+                                                    Small (256x256)
+                                                </div>
+                                            }
+                                            else if (iconSize == IconSize.Medium)
+                                            {
+                                                <span class="mt-1 text-xs"
+                                                      style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'>
+                                                    Medium (512x512)
+                                                </span>
+                                            }
+                                            else if (iconSize == IconSize.Large)
+                                            {
+                                                <span class="mt-1 text-xs"
+                                                      style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'>
+                                                    Large (1024x1024)
+                                                </span>
+                                            }
+
+
+                                    </div>
+                                    <span class="text-md mt-1"
+                                          style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'>
+                                        @iconSize
+                                    </span>
                                 </div>
                             }
-                            else if (iconSize == IconSize.Medium)
-                            {
-                                <span class="text-xs mt-1"
-                                      style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'>
-                                    Medium (512x512)
-                                </span>
-                            }
-                            else if (iconSize == IconSize.Large)
-                            {
-                                <span class="text-xs mt-1 "
-                                      style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'>
-                                    Large (1024x1024)
-                                </span>
-                            }
-                        </div>
-                        <span class="text-md mt-1 "
-                              style='@($"transform: scale({(selectedIconSize == iconSize ? 1.25 : 1)}); opacity: {(selectedIconSize == iconSize ? 1 : 0.5)};")'>
-                            @iconSize
-                        </span>
-                    </div>
                 }
             </div>
 
@@ -244,7 +273,7 @@
         </div>
         @if (command.Model == AIModelType.DallE2)
         {
-            <div class="w-full text-left flex flex-col gap-4">
+            <div class="flex w-full flex-col gap-4 text-left">
                 <label class="mb-2 block text-lg" for="iconQuantity">
                     7. How many images do you want (1 credit per image)?
                 </label>
@@ -256,14 +285,14 @@
         <AuthorizeView>
             <Authorized Context="authorizedContext">
                 <div class="mt-8">
-                    <button class="btn btn-primary text-white px-4 py-2" @onclick="@SubmitForm">
+                    <button class="btn btn-primary px-4 py-2 text-white" @onclick="@SubmitForm">
                         Generate Icon
                     </button>
                 </div>
             </Authorized>
 
             <NotAuthorized Context="authorizedContext">
-                <button class="btn btn-secondary text-white px-4 py-2" @onclick="NavigateToLogin">
+                <button class="btn btn-secondary px-4 py-2 text-white" @onclick="NavigateToLogin">
                     Go to Login
                 </button>
             </NotAuthorized>
@@ -275,7 +304,7 @@
     @if (!string.IsNullOrEmpty(generatedIconUrl))
     {
         <div class="mt-8">
-            <h2 class="text-2xl font-bold mb-4">Generated Icon</h2>
+            <h2 class="mb-4 text-2xl font-bold">Generated Icon</h2>
             <img src="@generatedIconUrl" alt="Generated Icon" class="rounded-lg"/>
         </div>
     }
@@ -296,10 +325,16 @@
         IsAuthenticated = authState.User.Identity.IsAuthenticated;
     }
     private bool isDallE3ModelSelected = false;
-    
+
     private void HandleModelSelection(AIModelType modelType)
     {
         isDallE3ModelSelected = modelType == AIModelType.DallE3;
+
+        if (modelType == AIModelType.DallE3)
+        {
+            command.Size = IconSize.Large;
+            selectedIconSize = IconSize.Large;
+        }
 
         command.Model = modelType;
     }
