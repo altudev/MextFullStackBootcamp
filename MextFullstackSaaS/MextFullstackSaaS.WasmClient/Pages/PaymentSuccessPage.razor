@@ -1,0 +1,8 @@
+﻿@page "/payment-success"
+
+<h2>@Token</h2>
+
+@code {
+    [SupplyParameterFromQuery(Name = "token")]
+    [Parameter] public  string Token { get; set; }
+}
