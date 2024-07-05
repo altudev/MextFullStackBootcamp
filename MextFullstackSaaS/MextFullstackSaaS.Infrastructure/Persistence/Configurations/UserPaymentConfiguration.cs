@@ -21,11 +21,6 @@ namespace MextFullstackSaaS.Infrastructure.Persistence.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            // ConversationId
-            builder.Property(x => x.ConversationId)
-                .HasMaxLength(100)
-                .IsRequired();
-
             // BasketId
             builder.Property(x => x.BasketId)
                 .HasMaxLength(100)

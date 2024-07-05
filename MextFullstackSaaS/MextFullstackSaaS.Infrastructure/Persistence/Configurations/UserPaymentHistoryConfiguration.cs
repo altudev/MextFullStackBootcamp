@@ -12,6 +12,11 @@ namespace MextFullstackSaaS.Infrastructure.Persistence.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
+            // ConversationId
+            builder.Property(x => x.ConversationId)
+                .HasMaxLength(100)
+                .IsRequired(false);
+
             // Status
             builder.Property(x => x.Status)
                 .HasConversion<int>()
