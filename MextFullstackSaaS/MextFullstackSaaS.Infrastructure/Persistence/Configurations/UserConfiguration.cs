@@ -59,6 +59,11 @@ namespace MextFullstackSaaS.Infrastructure.Persistence.Configurations
                 .WithOne(o => o.User)
                 .HasForeignKey(x => x.UserId);
 
+            // Each User can have many Payments
+            builder.HasMany<UserPayment>(x => x.Payments)
+                .WithOne(p => p.User)
+                .HasForeignKey(x => x.UserId);
+
             // Common Properties
 
             // CreatedDate

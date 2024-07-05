@@ -1,6 +1,7 @@
 ﻿using Iyzipay.Model;
 using Iyzipay.Request;
 using MextFullstackSaaS.Application.Common.Interfaces;
+using MextFullstackSaaS.Application.Common.Models.Payments;
 using MextFullstackSaaS.Domain.Settings;
 using Microsoft.Extensions.Options;
 using Options = Iyzipay.Options;
@@ -21,18 +22,25 @@ namespace MextFullstackSaaS.Infrastructure.Services
             };
         }
 
-        public async Task<object> CreateCheckoutFormAsync(CancellationToken cancellationToken)
+        private const int OneCreditPrice = 10;
+        private const string CallbackUrl = "https://localhost:7281/api/Payments/payment-result/";
+
+        public async Task<object> CreateCheckoutFormAsync(PaymentsCreateCheckoutFormRequest userRequest,CancellationToken cancellationToken)
         {
+            var price = userRequest.Credits * OneCreditPrice;
+            var paidPrice = price;
+            var basketId = Guid.NewGuid();
+
             CreateCheckoutFormInitializeRequest request = new CreateCheckoutFormInitializeRequest
             {
                 Locale = Locale.TR.ToString(),
                 ConversationId = "123456789",
-                Price = "100",
-                PaidPrice = "100",
+                Price = price.ToString(),
+                PaidPrice = paidPrice.ToString(),
                 Currency = Currency.TRY.ToString(),
-                BasketId = "B123456",
+                BasketId = basketId.ToString(),
                 PaymentGroup = PaymentGroup.PRODUCT.ToString(),
-                CallbackUrl = "https://localhost:7281/api/Payments/payment-result/"
+                CallbackUrl = CallbackUrl
             };
 
             List<int> enabledInstallments = new List<int>();
@@ -61,6 +69,8 @@ namespace MextFullstackSaaS.Infrastructure.Services
                 Country = "Turkey",
                 ZipCode = "34732"
             };
+
+            // UserAddress
             request.Buyer = buyer;
 
             Address billingAddress = new Address
